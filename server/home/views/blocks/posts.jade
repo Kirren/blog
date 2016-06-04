@@ -1,37 +1,13 @@
 section.posts
   .container
     each post in posts
-      .post
-        .post-head
-          if post.picture
-            .post-head__picture(style="background-image: url(" + post.picture + ")")
-          else if post.video
-            .post-head__video
-              iframe(src="//www.youtube.com/embed/" + post.video, frameborder="0", width="560", height="349", allowfullscreen)
-          else if post.gallery
-            -var pictures = JSON.parse(post.gallery)
-            .post-gallery
-              .col-6-cycle
-                .post-head__picture.post-head__picture_sm(style="background-image: url(" + pictures[0] + ")")
-              .col-6-cycle
-                .post-head__picture.post-head__picture_sm(style="background-image: url(" + pictures[1] + ")")
-              .col-6-cycle
-                .post-head__picture.post-head__picture_sm(style="background-image: url(" + pictures[2] + ")")
-              .col-6-cycle
-                .post-head__picture.post-head__picture_sm(style="background-image: url(" + pictures[3] + ")")
-                  .post-gallery__text= pictures.length
-        .post-body
-          .post-body__action= post.action
-          .post-body__date= post.date
-          if !post.quote
-            h2.post-body__title= post.title
-          if !post.video && !post.quote
-            .post-body__text= post.text
-          else if post.quote
-            .post-body__text.post-body__text_quote= post.text
-            .post-body__quote= post.quote
-          .post-body__footer
-            if !post.video && !post.quote
-              a.post-body__button(href="/" + post.id) read more
-            if !post.quote
-              .post-body__tags= post.hashtags
+      if post.video
+        include posts/post_video
+      else if post.picture
+        include posts/post_picture
+      else if post.gallery
+        include posts/post_gallery
+      else if post.quote
+        include posts/post_quote
+      else
+        include posts/post_default
