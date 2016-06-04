@@ -1,0 +1,45 @@
+{
+  "name": "blog",
+  "version": "0.0.1",
+  "description": "-",
+  "main": "index.js",
+  "scripts": {
+    "start": "rimraf public && gulp",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pavlovsch/blog.git"
+  },
+  "author": "pavlovsch",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/pavlovsch/blog/issues"
+  },
+  "homepage": "https://github.com/pavlovsch/blog#readme",
+  "dependencies": {
+    "babel-core": "^6.9.1",
+    "babel-polyfill": "^6.9.1",
+    "body-parser": "^1.15.1",
+    "compression": "^1.6.2",
+    "express": "^4.13.4",
+    "jade": "^1.11.0",
+    "mysql": "^2.10.2",
+    "node-uuid": "^1.4.7",
+    "normalize.css": "^4.1.1"
+  },
+  "devDependencies": {
+    "autoprefixer": "^6.3.6",
+    "babel-preset-node6": "^11.0.0",
+    "gulp": "^3.9.1",
+    "gulp-nodemon": "^2.0.7",
+    "gulp-plumber": "^1.1.0",
+    "gulp-postcss": "^6.1.1",
+    "gulp-stylus": "^2.4.0",
+    "lost": "^6.8.0",
+    "morgan": "^1.7.0",
+    "nodemon": "^1.9.2",
+    "rimraf": "^2.5.2",
+    "rucksack-css": "^0.8.6"
+  }
+}

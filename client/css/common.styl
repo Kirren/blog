@@ -1,0 +1,43 @@
+@import '../../node_modules/normalize.css/normalize.css'
+@import './grid'
+
+@font-face
+  font-family 'Open Sans Light'
+  src url('/fonts/opensans-light.woff') format('woff')
+  font-style normal
+  font-weight normal
+
+@font-face
+  font-family 'Open Sans Regular'
+  src url('/fonts/opensans-regular.woff') format('woff')
+  font-style normal
+  font-weight normal
+
+@font-face
+  font-family 'Open Sans Bold'
+  src url('/fonts/opensans-bold.woff') format('woff')
+  font-style normal
+  font-weight normal
+
+*
+*::before
+*::after
+  box-sizing border-box
+
+html
+  font-size 17px
+
+body
+  background-color $color-bg
+  color $color-text
+  min-width 320px
+  overflow-x hidden
+  font-family 'Open Sans Regular'
+
+h1
+h2
+h3
+h4
+h5
+h6
+  color $color-heading

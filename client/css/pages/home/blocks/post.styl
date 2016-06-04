@@ -1,0 +1,129 @@
+.post
+  margin-bottom 5%
+  background-color $post-bg
+  box-shadow 0 0 30px rgba(black, .1)
+
+.post-head__picture
+  background-size cover
+  background-repeat no-repeat
+  background-position center center
+  min-height 75vh
+
+.post-gallery
+  padding 1%
+  &::after
+    display block
+    content ''
+    clear both
+
+.post-gallery .col-6-cycle:last-child .post-head__picture_sm
+  &::after
+    content ''
+    position absolute
+    top 0
+    right 0
+    bottom 0
+    left 0
+    background-color rgba(black, .8)
+    z-index 1
+
+.post-gallery__text
+  z-index 2
+  position absolute
+  top 40%
+  left 50%
+  transform translateY(-40%) translateX(-50%)
+  color #fff
+  font-size 78px
+  font-family 'Open Sans Light'
+  &::after
+    position absolute
+    bottom 0
+    right 50%
+    bottom -10%
+    transform translateX(50%)
+    font-size 24px
+    content: 'photos'
+
+.post-head__picture_sm
+  position relative
+  min-height 45vh
+  margin 1%
+
+.post-head__video
+  position relative
+  padding-bottom 56.25%
+  height 0
+
+.post-head__video iframe
+  position absolute
+  top 0
+  left 0
+  width 100%
+  height 100%
+
+.post-body
+  position relative
+  padding 5% 7%
+
+.post-body__date
+  display inline-block
+
+.post-body__date
+  font-size 14px
+  font-family 'Open Sans Bold'
+  color $color-text-active
+  margin-bottom 2%
+
+.post-body__title
+  display block
+  font-size 40px
+  font-weight normal
+  font-family 'Open Sans Bold'
+  margin 0
+  border-bottom 2px solid #eeeeee
+  padding-bottom 4%
+  margin-bottom 5%
+
+.post-body__quote
+  margin-top 3%
+  color $color-text-active
+  &::before
+    content '- '
+
+.post-body__text
+  line-height 1.6
+
+.post-body__text_quote
+  line-height 1.3
+  font-style italic
+  font-size 40px
+
+.post-body__action
+  position absolute
+  top 5%
+  right -10px
+  color #fff
+  padding 5px 10px
+  background-color $color-primary
+
+.post-body__button
+  float left
+  font-size 21px
+  font-family 'Open Sans Bold'
+  color $color-primary
+  text-transform uppercase
+  text-decoration none
+
+.post-body__tags
+  float right
+  font-size 15px
+  color $color-text-active
+  word-spacing 10px
+
+.post-body__footer
+  margin-top 5%
+  &::after
+    clear both
+    display block
+    content ''
