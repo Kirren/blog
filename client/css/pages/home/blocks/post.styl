@@ -9,6 +9,23 @@
   background-position center center
   min-height 75vh
 
+.post-head__picture_sm
+  position relative
+  min-height 45vh
+  margin 1%
+
+.post-head__video
+  position relative
+  padding-bottom 56.25%
+  height 0
+
+.post-head__video iframe
+  position absolute
+  top 0
+  left 0
+  width 100%
+  height 100%
+
 .post-gallery
   padding 0.5%
   &::after
@@ -45,23 +62,6 @@
     font-size 24px
     content: 'photos'
 
-.post-head__picture_sm
-  position relative
-  min-height 45vh
-  margin 1%
-
-.post-head__video
-  position relative
-  padding-bottom 56.25%
-  height 0
-
-.post-head__video iframe
-  position absolute
-  top 0
-  left 0
-  width 100%
-  height 100%
-
 .post-body
   position relative
   padding 5% 7%
@@ -84,6 +84,10 @@
   border-bottom 2px solid #eeeeee
   padding-bottom 4%
   margin-bottom 5%
+
+.post-body__title_video
+  padding-bottom 0
+  border-bottom none
 
 .post-body__quote
   margin-top 3%
@@ -120,6 +124,9 @@
   font-size 15px
   color $color-text-active
   word-spacing 10px
+
+.post-body__tags_video
+  float left
 
 .post-body__footer
   margin-top 5%

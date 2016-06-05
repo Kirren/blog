@@ -1,4 +1,5 @@
 import express from 'express'
+import jsx from 'express-react-views'
 import * as config from './config'
 import path from 'path'
 
@@ -11,9 +12,14 @@ import logger from 'morgan'
 
 // page modules
 import home from './home'
+import admin from './admin'
 
-app
-  .set('view engine', 'jade')
+app.set('views', [
+  path.resolve(__dirname, 'home/views'),
+  path.resolve(__dirname, 'admin/views')
+])
+app.set('view engine', 'jsx')
+app.engine('jsx', jsx.createEngine())
 
 app
   .use(logger('dev'))
@@ -21,6 +27,7 @@ app
   .use(express.static(path.resolve(__dirname, '../public')))
   .use(bodyParser.urlencoded({ extended: true }))
   .use('/', home.router)
+  .use('/admin', admin.router)
 
 app.listen(config.PORT, (err) => {
     if (err) throw err

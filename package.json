@@ -23,10 +23,12 @@
     "body-parser": "^1.15.1",
     "compression": "^1.6.2",
     "express": "^4.13.4",
-    "jade": "^1.11.0",
+    "express-react-views": "^0.10.2",
     "mysql": "^2.10.2",
     "node-uuid": "^1.4.7",
-    "normalize.css": "^4.1.1"
+    "normalize.css": "^4.1.1",
+    "react": "^15.1.0",
+    "react-dom": "^15.1.0"
   },
   "devDependencies": {
     "autoprefixer": "^6.3.6",

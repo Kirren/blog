@@ -10,7 +10,8 @@ export const paths = {
   src: {
     css: [
       path.resolve(__dirname, 'css/common.styl'),
-      path.resolve(__dirname, 'css/pages/home/home.styl')
+      path.resolve(__dirname, 'css/pages/home/home.styl'),
+      path.resolve(__dirname, 'css/pages/admin/admin.styl')
     ],
     fonts: [
       path.resolve(__dirname, 'fonts') + '/*.woff'
@@ -42,5 +43,5 @@ export const nodemon = {
     'server',
     'public'
   ],
-  ext: 'jade css js jpeg jpg png gif svg woff'
+  ext: 'jade jsx css js jpeg jpg png gif svg woff'
 }

@@ -1,0 +1,67 @@
+.sidebar
+  position fixed
+  width 18%
+  height 100%
+  background-color desaturate(lighten($admin-color-secondary, 7%), 7%)
+
+.sidebar__title
+  font-family 'Open Sans Bold'
+  letter-spacing 2px
+  text-transform uppercase
+  padding 10% 0
+  text-align center
+
+.menu__button
+  position relative
+  color #fff
+  text-decoration none
+  display block
+  padding 15px 15px 15px 50px
+  &:hover
+    background-color $admin-color-secondary
+
+.menu__button_active
+  background-color $admin-color-secondary
+  box-shadow inset 0 2px 0 desaturate(darken($admin-color-secondary, 15%), 15%)
+  & span::after
+    position absolute
+    content ''
+    top 50%
+    right -15px
+    transform translateY(-25%)
+    width 6px
+    height 6px
+    border-radius 50%
+    background-color #27b5ff
+
+.menu__button:hover + .menu__button_active
+  box-shadow none
+
+.menu__button span
+  position relative
+
+.menu__button:hover span::after
+  position absolute
+  content ''
+  top 50%
+  right -15px
+  transform translateY(-25%)
+  width 6px
+  height 6px
+  border-radius 50%
+  background-color #27b5ff
+
+.sidebar__logout
+  background-color lighten($admin-color-secondary, 3%)
+  display block
+  width 100%
+  text-align center
+  position absolute
+  bottom 0
+  padding 25px 0
+  color #fff
+  text-decoration none
+  text-transform uppercase
+  font-size 13px
+  &:hover
+    background-color lighten($admin-color-secondary, 1.5%)
