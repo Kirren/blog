@@ -44,7 +44,11 @@ export const postcss = [
 
 export const webpackConfig = {
   resolve: {
-    extensions: ['', '.jsx', '.js']
+    extensions: ['', '.jsx', '.js'],
+    alias: {
+      components: path.resolve(__dirname, 'js/components'),
+      views: path.resolve(__dirname, 'js/views')
+    }
   },
   context: path.resolve(__dirname, 'js'),
   entry: {

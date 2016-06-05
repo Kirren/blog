@@ -13,6 +13,7 @@ import logger from 'morgan'
 // page modules
 import home from './home'
 import admin from './admin'
+import api from './api'
 
 app.set('views', [
   path.resolve(__dirname, 'home/views'),
@@ -28,6 +29,7 @@ app
   .use(bodyParser.urlencoded({ extended: true }))
   .use('/', home.router)
   .use('/admin', admin.router)
+  .use('/api', api.router)
 
 app.listen(config.PORT, (err) => {
     if (err) throw err
