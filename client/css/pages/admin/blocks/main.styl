@@ -47,3 +47,32 @@
   cursor pointer
   text-align center
   width 10%
+
+.modal-editpost
+  z-index 999
+  position fixed
+  top 10%
+  left 10%
+  right 10%
+  bottom 10%
+  background-color $admin-color-secondary
+  border 1px solid darken($admin-color-secondary, 10%)
+  box-shadow 0 0 40px rgba(black, .3)
+  &::after
+    position fixed
+    content ''
+    top 0
+    right 0
+    bottom 0
+    left 0
+    background-color rgba(black, .0)
+    z-index -10
+
+.modal-editpost__exit
+  position absolute
+  top 2%
+  right 2%
+  font-size 15px
+  color lighten($admin-color-secondary, 50%)
+  letter-spacing 2px
+  cursor pointer

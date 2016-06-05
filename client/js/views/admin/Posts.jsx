@@ -2,14 +2,20 @@ import React, { Component } from 'react'
 import { findDOMNode } from 'react-dom'
 import ajax from 'axios'
 
+// components
+import ModalEditPost from 'components/Modals/EditPost/EditPost.jsx'
+
 export default class Dashboard extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      data: null
+      data: null,
+      postToEdit: null,
+      enableModalEditPost: false
     }
     this.isLoaded = this.isLoaded.bind(this)
     this.editPost = this.editPost.bind(this)
+    this.exitEditPost = this.exitEditPost.bind(this)
   }
   componentDidMount() {
     ajax.get('/api/getposts').then((response) => {
@@ -21,13 +27,21 @@ export default class Dashboard extends Component {
   editPost(ev) {
     let target = findDOMNode(ev.target).parentNode.getAttribute('data-post-id')
     ajax.get('/api/getposts/' + target).then((response) => {
-      console.log(response.data[0])
+      this.setState({
+        postToEdit: response.data[0],
+        enableModalEditPost: true
+      })
     })
   }
-  isLoaded(data) {
+  exitEditPost() {
+    this.setState({
+      enableModalEditPost: false
+    })
+  }
+  isLoaded() {
     let posts
-    if(data !== null) {
-      posts = data.map((post, index) => {
+    if(this.state.data !== null) {
+      posts = this.state.data.map((post, index) => {
         let title = (post.title) ? <td className="main-menu-item__title">{post.title}</td> : null
         let quote = (post.quote) ? <td className="main-menu-item__title">{post.quote}'s quote.</td> : null
         return (
@@ -43,12 +57,17 @@ export default class Dashboard extends Component {
     }
   }
   render() {
+    let modal = (this.state.enableModalEditPost) ? <ModalEditPost exit={this.exitEditPost} data={this.state.postToEdit} /> : null
     return (
-      <table className="main-menu">
-        <tbody>
-          {this.isLoaded(this.state.data)}
-        </tbody>
-      </table>
+      <div>
+        {modal}
+        <table className="main-menu">
+          <tbody>
+            {this.isLoaded()}
+          </tbody>
+        </table>
+      </div>
+
     )
   }
 }
