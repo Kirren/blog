@@ -20,6 +20,7 @@ export default class Dashboard extends Component {
     this.exitEditPost = this.exitEditPost.bind(this)
     this.addPost = this.addPost.bind(this)
     this.exitAddPost = this.exitAddPost.bind(this)
+    this.dataFromAddPost = this.dataFromAddPost.bind(this)
   }
   componentDidMount() {
     ajax.get('/api/getposts').then((response) => {
@@ -53,6 +54,20 @@ export default class Dashboard extends Component {
       isModalEditPost: false
     })
   }
+  dataFromAddPost(obj) {
+    this.setState({
+      isModalAddPost: false
+    })
+    switch (obj.type) {
+      case 'default': ajax.post('/api/addpost', {
+        title: obj.title,
+        date: `${(new Date).getDate()}/${(new Date).getMonth() + 1}/${(new Date).getFullYear()}`,
+        text: obj.text,
+        hashtags: obj.hashtags,
+        action: 'Posted by pavlovsch'
+      }); break;
+    }
+  }
   isLoaded() {
     let posts
     if(this.state.data !== null) {
@@ -78,7 +93,7 @@ export default class Dashboard extends Component {
     ) : null
 
     let modalAdd = (this.state.isModalAddPost) ? (
-      <ModalAddPost exit={this.exitAddPost} />
+      <ModalAddPost applyData={this.dataFromAddPost} exit={this.exitAddPost} />
     ) : null
 
     return (

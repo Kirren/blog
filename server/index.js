@@ -26,6 +26,7 @@ app
   .use(logger('dev'))
   .use(compression())
   .use(express.static(path.resolve(__dirname, '../public')))
+  .use(bodyParser.json())
   .use(bodyParser.urlencoded({ extended: true }))
   .use('/', home.router)
   .use('/admin', admin.router)
