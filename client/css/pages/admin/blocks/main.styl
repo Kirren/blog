@@ -75,6 +75,13 @@
     background-color rgba(black, .0)
     z-index -10
 
+.modal-post_sm
+  top 35%
+  right 30%
+  bottom 35%
+  left 30%
+  text-align center
+
 .modal-post__exit
   padding 5px 10px
   position absolute
@@ -114,6 +121,18 @@
   background-color lighten($admin-color-secondary, 9%)
   padding 10px 15px
   color lighten($admin-color-secondary, 50%)
+
+.modal-post__button_sm
+  display inline-block
+  width 35%
+  &:nth-child(1)
+    margin-left 0
+  &:last-child
+    margin-left 30px
+
+.modal-post__heading_sm
+  text-transform uppercase
+  margin-bottom 4%
 
 .modal-post__radio
   display inline-block

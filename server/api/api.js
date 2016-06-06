@@ -8,7 +8,7 @@ export const router = express.Router()
 router.get('/getposts', (req, res) => {
   const query = `SELECT * FROM posts`
   db.query(query, (err, result) => {
-    res.send(result)
+    res.send(result.reverse())
   })
 })
 
@@ -41,5 +41,15 @@ router.post('/addpost', (req, res) => {
   db.query(query, (err, result) => {
     if (err) throw err
     res.end()
+  })
+})
+
+router.post('/deletepost', (req, res) => {
+  const body = req.body
+  const query = `DELETE FROM posts WHERE id=${db.escape(body.id)}`
+  console.log(query)
+  db.query(query, (err, result) => {
+    if (err) throw err
+    else res.end()
   })
 })

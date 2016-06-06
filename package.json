@@ -25,6 +25,7 @@
     "compression": "^1.6.2",
     "express": "^4.13.4",
     "express-react-views": "^0.10.2",
+    "marked": "^0.3.5",
     "mysql": "^2.10.2",
     "node-uuid": "^1.4.7",
     "normalize.css": "^4.1.1",
