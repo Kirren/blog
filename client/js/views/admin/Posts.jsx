@@ -4,6 +4,7 @@ import ajax from 'axios'
 
 // components
 import ModalEditPost from 'components/Modals/EditPost/EditPost.jsx'
+import ModalAddPost from 'components/Modals/AddPost/AddPost.jsx'
 
 export default class Dashboard extends Component {
   constructor(props) {
@@ -11,11 +12,14 @@ export default class Dashboard extends Component {
     this.state = {
       data: null,
       postToEdit: null,
-      enableModalEditPost: false
+      isModalEditPost: false,
+      isModalAddPost: false
     }
     this.isLoaded = this.isLoaded.bind(this)
     this.editPost = this.editPost.bind(this)
     this.exitEditPost = this.exitEditPost.bind(this)
+    this.addPost = this.addPost.bind(this)
+    this.exitAddPost = this.exitAddPost.bind(this)
   }
   componentDidMount() {
     ajax.get('/api/getposts').then((response) => {
@@ -24,18 +28,29 @@ export default class Dashboard extends Component {
       })
     })
   }
+  addPost() {
+    this.setState({
+      isModalAddPost: true
+    })
+  }
+  exitAddPost() {
+    this.setState({
+      isModalAddPost: false
+    })
+  }
   editPost(ev) {
     let target = findDOMNode(ev.target).parentNode.getAttribute('data-post-id')
     ajax.get('/api/getposts/' + target).then((response) => {
       this.setState({
         postToEdit: response.data[0],
-        enableModalEditPost: true
+        isModalEditPost: true
       })
     })
   }
   exitEditPost() {
     this.setState({
-      enableModalEditPost: false
+      postToEdit: null,
+      isModalEditPost: false
     })
   }
   isLoaded() {
@@ -50,6 +65,7 @@ export default class Dashboard extends Component {
             {title}
             {quote}
             <td className="main-menu-item__edit" onClick={this.editPost}>Edit</td>
+            <td className="main-menu-item__delete">Delete</td>
           </tr>
         )
       })
@@ -57,10 +73,22 @@ export default class Dashboard extends Component {
     }
   }
   render() {
-    let modal = (this.state.enableModalEditPost) ? <ModalEditPost exit={this.exitEditPost} data={this.state.postToEdit} /> : null
+    let modalEdit = (this.state.isModalEditPost) ? (
+      <ModalEditPost exit={this.exitEditPost} data={this.state.postToEdit} />
+    ) : null
+
+    let modalAdd = (this.state.isModalAddPost) ? (
+      <ModalAddPost exit={this.exitAddPost} />
+    ) : null
+
     return (
       <div>
-        {modal}
+        {modalAdd}
+        {modalEdit}
+        <div className="main-topbar">
+          <div className="main-topbar__button" onClick={this.addPost}>Add</div>
+          <div className="main-topbar__button">Search</div>
+        </div>
         <table className="main-menu">
           <tbody>
             {this.isLoaded()}

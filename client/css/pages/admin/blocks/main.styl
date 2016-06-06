@@ -4,7 +4,7 @@
 
 // posts panel
 .main-topbar
-  background-color desaturate(lighten($admin-color-secondary, 7%), 7%)
+  background-color desaturate(lighten($admin-color-secondary, 14%), 14%)
   margin-left 1%
   box-shadow inset 0 -1px 0 desaturate(lighten($admin-color-secondary, 5%), 5%)
 
@@ -20,7 +20,8 @@
   display inline-block
   cursor pointer
   &:hover
-    background-color desaturate(lighten($admin-color-secondary, 9%), 9%)
+    background-color desaturate(lighten($admin-color-secondary, 17%), 17%)
+    box-shadow inset 0 -1px 0 desaturate(lighten($admin-color-secondary, 2%), 2%)
 
 .main-menu
   margin-left 1%
@@ -31,30 +32,36 @@
 
 .main-menu-item__date
 .main-menu-item__edit
+.main-menu-item__delete
 .main-menu-item__title
   padding 15px
   &:hover
     background-color desaturate(lighten($admin-color-secondary, 9%), 9%)
 
+.main-menu-item__edit
+.main-menu-item__delete
 .main-menu-item__date
+  cursor pointer
   text-align center
+
+.main-menu-item__edit
+.main-menu-item__delete
+  width 5%
+
+.main-menu-item__date
   width 10%
 
 .main-menu-item__title
-  width 60%
+  width 70%
 
-.main-menu-item__edit
-  cursor pointer
-  text-align center
-  width 10%
-
-.modal-editpost
+.modal-post
+  padding 3%
   z-index 999
   position fixed
-  top 10%
+  top 1%
   left 10%
   right 10%
-  bottom 10%
+  bottom 1%
   background-color $admin-color-secondary
   border 1px solid darken($admin-color-secondary, 10%)
   box-shadow 0 0 40px rgba(black, .3)
@@ -68,11 +75,54 @@
     background-color rgba(black, .0)
     z-index -10
 
-.modal-editpost__exit
+.modal-post__exit
+  padding 5px 10px
   position absolute
-  top 2%
-  right 2%
+  top 20px
+  right 20px
+  background-color lighten($admin-color-secondary, 9%)
   font-size 15px
   color lighten($admin-color-secondary, 50%)
   letter-spacing 2px
   cursor pointer
+
+.modal-post__input
+.modal-post__textarea
+  display block
+  width 100%
+  border 1px solid lighten($admin-color-secondary, 9%)
+  background-color lighten($admin-color-secondary, 5%)
+  padding 5px
+  color #fff
+  &:focus
+    outline 2px solid lighten($admin-color-secondary, 25%)
+
+.modal-post__textarea
+  max-width 100%
+  min-height 200px
+
+.modal-post__label
+  display inline-block
+  padding 10px 0 5px
+  font-size 18px
+  color lighten($admin-color-secondary, 25%)
+
+.modal-post__button
+  margin-top 15px
+  cursor pointer
+  border none
+  background-color lighten($admin-color-secondary, 9%)
+  padding 10px 15px
+  color lighten($admin-color-secondary, 50%)
+
+.modal-post__radio
+  display inline-block
+  vertical-align middle
+  margin 0 10px 0 5px
+
+.modal-post__radio-text
+  display inline-block
+  text-transform uppercase
+  color lighten($admin-color-secondary, 50%)
+  font-size 14px
+  vertical-align middle
