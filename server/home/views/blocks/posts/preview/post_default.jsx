@@ -3,6 +3,7 @@ import marked from 'marked'
 
 export default class PostDefault extends React.Component {
   render() {
+    let preview = (this.props.preview) ? <a href={`/${this.props.data.id}`} className="post-body__button">read more</a> : null
     return (
       <div>
         <div className="post">
@@ -12,7 +13,7 @@ export default class PostDefault extends React.Component {
             <h2 className="post-body__title">{this.props.data.title}</h2>
             <div className="post-body__text" dangerouslySetInnerHTML={{__html: marked(this.props.data.text) }} />
             <div className="post-body__footer">
-              <a href="/" className="post-body__button">read more</a>
+              {preview}
               <div className="post-body__tags">{this.props.data.hashtags}</div>
             </div>
           </div>

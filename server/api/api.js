@@ -47,7 +47,6 @@ router.post('/addpost', (req, res) => {
 router.post('/deletepost', (req, res) => {
   const body = req.body
   const query = `DELETE FROM posts WHERE id=${db.escape(body.id)}`
-  console.log(query)
   db.query(query, (err, result) => {
     if (err) throw err
     else res.end()

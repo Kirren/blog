@@ -8,17 +8,25 @@ import PostVideo from './posts/preview/post_video.jsx'
 
 export default class Posts extends React.Component {
   render() {
+    let regexp = /\[INTRO: END]/
     let posts = this.props.data.posts.map((post) => {
+      let text = regexp.exec(post.text) || null
+      if (this.props.data.preview && text && text.index) {
+          post.text = text.input.slice(0, text.index)
+      } else if (!this.props.data.preview && text && text.index) {
+        post.text = text.input.slice(0, text.index) + " " + text.input.slice(text.index + text[0].length)
+      }
+
       if (post.video) {
         return <PostVideo data={post} />
       } else if (post.gallery) {
-        return <PostGallery data={post} />
+        return <PostGallery preview={this.props.data.preview} data={post} />
       } else if (post.picture) {
-        return <PostPicture data={post} />
+        return <PostPicture preview={this.props.data.preview} data={post} />
       } else if (post.quote) {
-        return <PostQuote data={post} />
+        return <PostQuote preview={this.props.data.preview} data={post} />
       } else {
-        return <PostDefault data={post} />
+        return <PostDefault preview={this.props.data.preview} data={post} />
       }
     })
     return (

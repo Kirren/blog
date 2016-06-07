@@ -12,11 +12,11 @@ export default class Navbar extends React.Component {
             </div>
             <div className="col-8">
               <ul className="navbar-menu">
-                <li><a href="#1" className="navbar-menu__button navbar-menu__button_active">home</a></li>
-                <li><a href="#2" className="navbar-menu__button">about</a></li>
-                <li><a href="#3" className="navbar-menu__button">archive</a></li>
-                <li><a href="#4" className="navbar-menu__button">contact</a></li>
-                <li><a href="#5" className="navbar-menu__button">search</a></li>
+                <li><a href="/" className="navbar-menu__button navbar-menu__button_active">home</a></li>
+                <li><a href="/about" className="navbar-menu__button">about</a></li>
+                <li><a href="/archive" className="navbar-menu__button">archive</a></li>
+                <li><a href="/contact" className="navbar-menu__button">contact</a></li>
+                <li><a href="/search" className="navbar-menu__button">search</a></li>
               </ul>
             </div>
           </div>

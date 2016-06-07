@@ -28,9 +28,9 @@ app
   .use(express.static(path.resolve(__dirname, '../public')))
   .use(bodyParser.json())
   .use(bodyParser.urlencoded({ extended: true }))
-  .use('/', home.router)
   .use('/admin', admin.router)
   .use('/api', api.router)
+  .use('/', home.router)
 
 app.listen(config.PORT, (err) => {
     if (err) throw err
