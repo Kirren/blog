@@ -53,3 +53,17 @@ router.post('/deletepost', (req, res) => {
     else res.end()
   })
 })
+
+router.post('/editpost', (req, res) => {
+  const body = req.body
+  const query =
+  `
+  UPDATE posts
+  SET title=${db.escape(body.title)}, text=${db.escape(body.text)}, video=${db.escape(body.video)}, quote=${db.escape(body.quote)}, picture=${db.escape(body.picture)}, hashtags=${db.escape(body.hashtags)}
+  WHERE id=${db.escape(body.id)}
+  `
+  db.query(query, (err, result) => {
+    if (err) throw err
+    else res.end()
+  })
+})

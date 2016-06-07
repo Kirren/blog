@@ -7,12 +7,13 @@ import ModalEditPost from 'components/Modals/EditPost/EditPost'
 import ModalAddPost from 'components/Modals/AddPost/AddPost'
 import ConfirmModal from 'components/Modals/ConfirmModal/ConfirmModal'
 
-export default class Dashboard extends Component {
+export default class Posts extends Component {
   constructor(props) {
     super(props)
     this.state = {
       data: null,
       postToEdit: null,
+      idPostToEdit: null,
       postToDelete: null,
       isModalEditPost: false,
       isModalAddPost: false,
@@ -27,6 +28,7 @@ export default class Dashboard extends Component {
     this.confirmDeletePost = this.confirmDeletePost.bind(this)
     this.applyDeletePost = this.applyDeletePost.bind(this)
     this.exitConfirmDeletePost = this.exitConfirmDeletePost.bind(this)
+    this.applyEditPost = this.applyEditPost.bind(this)
   }
   componentDidMount() {
     ajax.get('/api/getposts').then((response) => {
@@ -49,10 +51,18 @@ export default class Dashboard extends Component {
     let target = findDOMNode(ev.target).parentNode.getAttribute('data-post-id')
     ajax.get('/api/getposts/' + target).then((response) => {
       this.setState({
+        idPostToEdit: target,
         postToEdit: response.data[0],
         isModalEditPost: true
       })
     })
+  }
+  applyEditPost(obj) {
+    this.setState({
+      isModalEditPost: false,
+      postToEdit: null
+    })
+    ajax.post('/api/editpost', obj)
   }
   exitEditPost() {
     this.setState({
@@ -143,7 +153,7 @@ export default class Dashboard extends Component {
   }
   render() {
     let modalEdit = (this.state.isModalEditPost) ? (
-      <ModalEditPost exit={this.exitEditPost} data={this.state.postToEdit} />
+      <ModalEditPost exit={this.exitEditPost} data={this.state.postToEdit} applyData={this.applyEditPost} idPost={this.state.idPostToEdit}/>
     ) : null
 
     let modalAdd = (this.state.isModalAddPost) ? (

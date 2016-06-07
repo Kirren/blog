@@ -7,7 +7,6 @@ export default class Sidebar extends Component {
       <div className="sidebar">
         <div className="sidebar__title">Palo Alto</div>
         <div className="menu">
-          <Link activeClassName="menu__button_active" to="/dashboard" className="menu__button"> <span>Dashboard</span> </Link>
           <Link activeClassName="menu__button_active" to="/posts" className="menu__button"> <span>Articles</span> </Link>
           <Link activeClassName="menu__button_active" to="/faq" className="menu__button"> <span>FAQ</span> </Link>
         </div>

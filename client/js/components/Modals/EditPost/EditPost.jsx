@@ -1,33 +1,90 @@
 import React, { Component } from 'react'
+import { findDOMNode } from 'react-dom'
 
 export default class ModalEditPost extends Component {
-  render() {
+  constructor() {
+    super()
+    this.handleApply = this.handleApply.bind(this)
+    this.handleChange = this.handleChange.bind(this)
+  }
+  componentWillMount() {
+    this.setState({
+      title: this.props.data.title || null,
+      text: this.props.data.text || null,
+      picture: this.props.data.picture || null,
+      video: this.props.data.video || null,
+      quote: this.props.data.quote || null,
+      hashtags: this.props.data.hashtags || null
+    })
+  }
+  handleApply(ev) {
+    ev.preventDefault()
+    this.props.applyData({
+      id: this.props.idPost,
+      title: this.state.title,
+      text: this.state.text,
+      picture: this.state.picture,
+      video: this.state.video,
+      quote: this.state.quote,
+      hashtags: this.state.hashtags
+    })
+  }
+  handleChange(ev) {
+    let target = findDOMNode(ev.target).id
+    let value = findDOMNode(ev.target).value
 
+    switch (target) {
+      case 'modal-post__title': this.setState({
+        title: value
+      }); break;
+
+      case 'modal-post__text': this.setState({
+        text: value
+      }); break;
+
+      case 'modal-post__picture': this.setState({
+        picture: value
+      }); break;
+
+      case 'modal-post__video': this.setState({
+        video: value
+      }); break;
+
+      case 'modal-post__quote': this.setState({
+        quote: value
+      }); break;
+
+      case 'modal-post__hashtags': this.setState({
+        hashtags: value
+      }); break;
+    }
+  }
+  render() {
     let video = (this.props.data.video) ? (
     <div>
       <label className="modal-post__label" htmlFor="modal-post__video">Video:</label>
-      <input id="modal-post__video" className="modal-post__input modal-post__input_video" value={this.props.data.video} type="text"/>
+      <input onChange={this.handleChange} id="modal-post__video" className="modal-post__input modal-post__input_video" value={this.state.video} type="text"/>
     </div>
     ) : null
 
     let quote = (this.props.data.quote) ? (
     <div>
       <label className="modal-post__label" htmlFor="modal-post__quote">Author:</label>
-      <input id="modal-post__quote" className="modal-post__input modal-post__input_quote" value={this.props.data.quote} type="text"/>
+      <input onChange={this.handleChange} id="modal-post__quote" className="modal-post__input modal-post__input_quote" value={this.state.quote} type="text"/>
     </div>
     ) : null
 
     let title = (this.props.data.title) ? (
     <div>
       <label className="modal-post__label" htmlFor="modal-post__title">Title:</label>
-      <input id="modal-post__title" className="modal-post__input modal-post__input_title" value={this.props.data.title} type="text"/>
+      <input onChange={this.handleChange} id="modal-post__title" className="modal-post__input modal-post__input_title" value={this.state.title} type="text"/>
     </div>
     ) : null
 
     let text = (this.props.data.text) ? (
     <div>
       <label className="modal-post__label" htmlFor="modal-post__text">Text:</label>
-      <textarea id="modal-post__text" className="modal-post__textarea modal-post__textarea_text">{this.props.data.text}</textarea>
+      <textarea onChange={this.handleChange} id="modal-post__text" className="modal-post__textarea modal-post__textarea_text" value={this.state.text}></textarea>
     </div>
     ) : null
 
@@ -39,7 +96,7 @@ export default class ModalEditPost extends Component {
           {quote}
           {title}
           {text}
-          <button className="modal-post__button" type="submit">Apply</button>
+          <button className="modal-post__button" type="submit" onClick={this.handleApply}>Apply</button>
         </form>
       </div>
     )
