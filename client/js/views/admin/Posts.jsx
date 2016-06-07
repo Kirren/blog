@@ -29,6 +29,7 @@ export default class Posts extends Component {
     this.applyDeletePost = this.applyDeletePost.bind(this)
     this.exitConfirmDeletePost = this.exitConfirmDeletePost.bind(this)
     this.applyEditPost = this.applyEditPost.bind(this)
+    this.findDangerousTags = this.findDangerousTags.bind(this)
   }
   componentDidMount() {
     ajax.get('/api/getposts').then((response) => {
@@ -36,6 +37,37 @@ export default class Posts extends Component {
         data: response.data
       })
     })
+  }
+  findDangerousTags(target) {
+    if (!target) {
+      return ""
+    }
+
+    function replacer(str, s1, offset, s) {
+      let tag
+      let tagScript = s1.match(/(<script[^*<]+>)/gim) || ['so strange code']
+      let tagForm = s1.match(/(<form[^*<]+>)/gim) || ['so strange code']
+      let tagInput = s1.match(/(<input[^*<]+>)/gim) || ['so strange code']
+      switch(s1) {
+        case '</script>': tag = '&#60;/script&#62;'; break;
+        case '<style>': tag = '&#60;style&#62;'; break;
+        case '</style>': tag = '&#60;/style&#62;'; break;
+        case '<html>': tag = '&#60;html&#62;'; break;
+        case '</html>': tag = '&#60;/html&#62;'; break;
+        case '<body>': tag = '&#60;body&#62;'; break;
+        case '</body>': tag = '&#60;/body&#62;'; break;
+        case '<head>': tag = '&#60;head&#62;'; break;
+        case '</head>': tag = '&#60;/head&#62;'; break;
+        case '</form>': tag = '&#60;/form&#62;'; break;
+        case tagForm[0]: tag = '&#60;form&#62;'; break;
+        case tagScript[0]: tag = '&#60;script&#62;'; break;
+        case tagInput[0]: tag = '&#60;input&#62;'; break;
+        case 'default': tag = s1; break;
+      }
+      return tag
+    }
+
+    return target.replace(/(<script[^*<]+>|<\/script>|<style>|<\/style>|<html>|<\/html>|<body>|<\/body>|<head>|<\/head>|<form[^*<]+>|<\/form>|<input[^*<]+>)/gim, replacer)
   }
   addPost() {
     this.setState({
@@ -136,7 +168,7 @@ export default class Posts extends Component {
     let posts
     if(this.state.data !== null) {
       posts = this.state.data.map((post, index) => {
-        let title = (post.title) ? <td className="main-menu-item__title">{post.title}</td> : null
+        let title = (post.title) ? <td className="main-menu-item__title">{post.title}</td> : <td className="main-menu-item__title">No title</td>
         let quote = (post.quote) ? <td className="main-menu-item__title">{post.quote} quote</td> : null
         return (
           <tr data-post-id={post.id} key={index} className="main-menu-item">
@@ -153,11 +185,11 @@ export default class Posts extends Component {
   }
   render() {
     let modalEdit = (this.state.isModalEditPost) ? (
-      <ModalEditPost exit={this.exitEditPost} data={this.state.postToEdit} applyData={this.applyEditPost} idPost={this.state.idPostToEdit}/>
+      <ModalEditPost findTags={this.findDangerousTags} exit={this.exitEditPost} data={this.state.postToEdit} applyData={this.applyEditPost} idPost={this.state.idPostToEdit}/>
     ) : null
 
     let modalAdd = (this.state.isModalAddPost) ? (
-      <ModalAddPost applyData={this.dataFromAddPost} exit={this.exitAddPost} />
+      <ModalAddPost findTags={this.findDangerousTags} applyData={this.dataFromAddPost} exit={this.exitAddPost} />
     ) : null
 
     let modalConfirm = (this.state.isModalConfirmDeletePost) ? (

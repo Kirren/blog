@@ -22,7 +22,7 @@ export default class ModalEditPost extends Component {
     this.props.applyData({
       id: this.props.idPost,
       title: this.state.title,
-      text: this.state.text,
+      text: this.props.findTags(this.state.text),
       picture: this.state.picture,
       video: this.state.video,
       quote: this.state.quote,

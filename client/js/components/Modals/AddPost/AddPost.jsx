@@ -62,7 +62,7 @@ export default class AddPost extends Component {
       type: this.state.type,
       title: this.state.title,
       video: this.state.video,
-      text: this.state.text,
+      text: this.props.findTags(this.state.text) || "No text.",
       quote: this.state.quote,
       hashtags: this.state.hashtags,
       picture: this.state.picture
