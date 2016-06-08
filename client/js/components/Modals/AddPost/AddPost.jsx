@@ -17,6 +17,7 @@ export default class AddPost extends Component {
     this.handlerType = this.handlerType.bind(this)
     this.receiveData = this.receiveData.bind(this)
     this.avoidSubmit = this.avoidSubmit.bind(this)
+    this.checkPicture = this.checkPicture.bind(this)
   }
   avoidSubmit(ev) {
     ev.preventDefault()
@@ -56,6 +57,17 @@ export default class AddPost extends Component {
       }); break;
     }
   }
+  checkPicture() {
+    if(this.state.picture) {
+      let url = /[-a-zA-Z0-9@:%_\+.~#?&//=]{2,256}\.[a-z]{2,4}\b(\/[-a-zA-Z0-9@:%_\+.~#?&//=]*)?/gi
+      let regexp = new RegExp(url)
+      let target = this.state.picture
+      target = target.match(regexp)
+      if (target) {
+        return 'modal-post_success'
+      } else return 'modal-post_failure'
+    } else return ''
+  }
   receiveData(ev) {
     ev.preventDefault()
     this.props.applyData({
@@ -87,7 +99,7 @@ export default class AddPost extends Component {
       case 'picture': form = (
         <div>
           <label className="modal-post__label" htmlFor="modal-post__picture">Picture link:</label>
-          <input onChange={this.handlerType} id="modal-post__picture" className="modal-post__input modal-post__input_picture" type="text"/>
+          <input autoComplete="off" onChange={this.handlerType} id="modal-post__picture" className={`modal-post__input modal-post__input_picture ${this.checkPicture()}`} type="text"/>
           <label className="modal-post__label" htmlFor="modal-post__title">Title:</label>
           <input onChange={this.handlerType} id="modal-post__title" className="modal-post__input modal-post__input_title" type="text"/>
           <label className="modal-post__label" htmlFor="modal-post__text">Text:</label>
