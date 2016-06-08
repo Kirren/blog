@@ -170,3 +170,21 @@
   border-color desaturate(darken(#ccff00, 25%), 50%)
 .modal-post_failure
   border-color desaturate(darken(#ff0000, 25%), 50%)
+
+.modals-enter {
+  opacity: 0.01;
+}
+
+.modals-enter.modals-enter-active {
+  opacity: 1;
+  transition: opacity 100ms ease-in;
+}
+
+.modals-leave {
+  opacity: 1;
+}
+
+.modals-leave.modals-leave-active {
+  opacity: 0.01;
+  transition: opacity 100ms ease-in;
+}

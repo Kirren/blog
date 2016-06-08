@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import ReactCSSTransitionGroup from 'react/lib/ReactCSSTransitionGroup'
 import { findDOMNode } from 'react-dom'
 import ajax from 'axios'
 
@@ -236,9 +237,11 @@ export default class Posts extends Component {
 
     return (
       <div>
-        {modalAdd}
-        {modalEdit}
-        {modalConfirm}
+        <ReactCSSTransitionGroup transitionName="modals" transitionEnterTimeout={500} transitionLeaveTimeout={300}>
+          {modalConfirm}
+          {modalAdd}
+          {modalEdit}
+        </ReactCSSTransitionGroup>
         <div className="main-topbar">
           <div className="main-topbar__button" onClick={this.addPost}>Add</div>
           <div className="main-topbar__button" onClick={this.toggleSearch}>Search</div>
