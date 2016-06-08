@@ -3,7 +3,7 @@ import marked from 'marked'
 
 export default class PostDefault extends React.Component {
   render() {
-    let preview = (this.props.preview) ? <a href={`/${this.props.data.id}`} className="post-body__button">read more</a> : null
+    let preview = (this.props.preview) ? <a href={`/${this.props.url}/${this.props.data.id}`} className="post-body__button">read more</a> : null
     return (
       <div>
         <div className="post">
