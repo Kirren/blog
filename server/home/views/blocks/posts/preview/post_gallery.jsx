@@ -5,31 +5,41 @@ export default class PostGallery extends React.Component {
   render() {
     let gallery = JSON.parse(this.props.data.gallery)
     let preview = (this.props.preview) ? <a href={`/${this.props.url}/${this.props.data.id}`} className="post-body__button">read more</a> : null
+    let galleryHead = (this.props.preview) ? (
+      <div>
+        <div className="col-6-cycle">
+          <div style={{backgroundImage: `url(${gallery[0]})`}} className="post-head__picture post-head__picture_sm"></div>
+        </div>
+        <div className="col-6-cycle">
+          <div style={{backgroundImage: `url(${gallery[1]})`}} className="post-head__picture post-head__picture_sm"></div>
+        </div>
+        <div className="col-6-cycle">
+          <div style={{backgroundImage: `url(${gallery[2]})`}} className="post-head__picture post-head__picture_sm"></div>
+        </div>
+        <div className="col-6-cycle">
+          <div style={{backgroundImage: `url(${gallery[3]})`}} className="post-head__picture post-head__picture_sm">
+            <div className="post-gallery__text">{gallery.length}</div>
+          </div>
+        </div>
+      </div>
+    ) : (
+      gallery.map((pic) =>
+        <div className="col-12-12">
+          <div style={{backgroundImage: `url(${pic})`}} className="post-head__picture post-head__picture_full"></div>
+        </div>
+      )
+    )
     return (
       <div>
         <div className="post">
-          <div className="post-head">
 
-            <div className="post-gallery">
-              <div className="col-6-cycle">
-                <div style={{backgroundImage: `url(${gallery[0]})`}} className="post-head__picture post-head__picture_sm"></div>
-              </div>
-              <div className="col-6-cycle">
-                <div style={{backgroundImage: `url(${gallery[1]})`}} className="post-head__picture post-head__picture_sm"></div>
-              </div>
-              <div className="col-6-cycle">
-                <div style={{backgroundImage: `url(${gallery[2]})`}} className="post-head__picture post-head__picture_sm"></div>
-              </div>
-              <div className="col-6-cycle">
-                <div style={{backgroundImage: `url(${gallery[3]})`}} className="post-head__picture post-head__picture_sm">
-                  <div className="post-gallery__text">{gallery.length}</div>
-                </div>
-              </div>
-            </div>
-
+        <div className="post-head">
+          <div className="post-gallery">
+            {galleryHead}
           </div>
-          <div className="post-body">
+        </div>
 
+          <div className="post-body">
             <div className="post-body__action">{this.props.data.action}</div>
             <div className="post-body__date">{this.props.data.date}</div>
             <h2 className="post-body__title">{this.props.data.title}</h2>
@@ -38,7 +48,6 @@ export default class PostGallery extends React.Component {
               {preview}
               <div className="post-body__tags">{this.props.data.hashtags}</div>
             </div>
-
           </div>
         </div>
       </div>

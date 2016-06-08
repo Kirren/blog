@@ -30,12 +30,13 @@ router.post('/addpost', (req, res) => {
     video: (req.body.video) ? req.body.video : null,
     quote: (req.body.quote) ? req.body.quote : null,
     picture: (req.body.picture) ? req.body.picture : null,
-    hashtags: (req.body.hashtags) ? req.body.hashtags : null
+    hashtags: (req.body.hashtags) ? req.body.hashtags : null,
+    gallery: (req.body.gallery) ? req.body.gallery : null,
   }
   const query =
   `
-  INSERT INTO posts (id, title, text, action, date, video, quote, picture, hashtags)
-  VALUES (${db.escape(body.id)}, ${db.escape(body.title)}, ${db.escape(body.text)}, ${db.escape(body.action)}, ${db.escape(body.date)}, ${db.escape(body.video)}, ${db.escape(body.quote)}, ${db.escape(body.picture)}, ${db.escape(body.hashtags)})
+  INSERT INTO posts (id, title, text, action, date, video, quote, picture, hashtags, gallery)
+  VALUES (${db.escape(body.id)}, ${db.escape(body.title)}, ${db.escape(body.text)}, ${db.escape(body.action)}, ${db.escape(body.date)}, ${db.escape(body.video)}, ${db.escape(body.quote)}, ${db.escape(body.picture)}, ${db.escape(body.hashtags)}, ${db.escape(body.gallery)})
   `
 
   db.query(query, (err, result) => {

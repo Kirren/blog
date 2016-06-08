@@ -170,7 +170,7 @@ export default class Posts extends Component {
         date: `${(new Date).getDate()}/${(new Date).getMonth() + 1}/${(new Date).getFullYear()}`,
         text: obj.text,
         hashtags: obj.hashtags,
-        action: 'Posted by pavlovsch'
+        action: 'default'
       }); break;
 
       case 'picture': ajax.post('/api/addpost', {
@@ -179,14 +179,23 @@ export default class Posts extends Component {
         date: `${(new Date).getDate()}/${(new Date).getMonth() + 1}/${(new Date).getFullYear()}`,
         text: obj.text,
         hashtags: obj.hashtags,
-        action: 'Posted by pavlovsch'
+        action: 'picture'
+      }); break;
+
+      case 'gallery': ajax.post('/api/addpost', {
+        title: obj.title,
+        gallery: JSON.stringify(obj.gallery),
+        date: `${(new Date).getDate()}/${(new Date).getMonth() + 1}/${(new Date).getFullYear()}`,
+        text: obj.text,
+        hashtags: obj.hashtags,
+        action: 'gallery'
       }); break;
 
       case 'quote': ajax.post('/api/addpost', {
         quote: obj.quote,
         date: `${(new Date).getDate()}/${(new Date).getMonth() + 1}/${(new Date).getFullYear()}`,
         text: obj.text,
-        action: 'Posted by pavlovsch'
+        action: 'quote'
       }); break;
 
       case 'video': ajax.post('/api/addpost', {
@@ -194,7 +203,7 @@ export default class Posts extends Component {
         date: `${(new Date).getDate()}/${(new Date).getMonth() + 1}/${(new Date).getFullYear()}`,
         video: obj.video,
         hashtags: obj.hashtags,
-        action: 'Posted by pavlovsch'
+        action: 'video'
       }); break;
     }
   }
@@ -253,7 +262,6 @@ export default class Posts extends Component {
           </tbody>
         </table>
       </div>
-
     )
   }
 }
