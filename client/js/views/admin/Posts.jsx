@@ -201,7 +201,8 @@ export default class Posts extends Component {
     let posts
     if(this.state.data !== null) {
       posts = this.state.data.map((post, index) => {
-        let title = (post.title) ? <td className="main-menu-item__title">{post.title}</td> : <td className="main-menu-item__title">No title</td>
+        let title = (post.quote) ? null :
+        (post.title) ? <td className="main-menu-item__title">{post.title}</td> : <td className="main-menu-item__title">Empty</td>
         let quote = (post.quote) ? <td className="main-menu-item__title">{post.quote} quote</td> : null
         return (
           <tr data-post-id={post.id} key={index} className="main-menu-item">

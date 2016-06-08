@@ -40,3 +40,13 @@ h4
 h5
 h6
   color $color-heading
+
+a
+  &:link
+    color $color-primary
+  &:visited
+    color darken(desaturate($color-primary, 75%), 25%)
+  &:active
+    color lighten($color-primary, 50%)
+  &:hover
+    color lighten($color-primary, 25%)
