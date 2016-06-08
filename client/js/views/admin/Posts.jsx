@@ -12,12 +12,14 @@ export default class Posts extends Component {
     super(props)
     this.state = {
       data: null,
+      backupData: null,
       postToEdit: null,
       idPostToEdit: null,
       postToDelete: null,
       isModalEditPost: false,
       isModalAddPost: false,
-      isModalConfirmDeletePost: false
+      isModalConfirmDeletePost: false,
+      isSearch: false
     }
     this.isLoaded = this.isLoaded.bind(this)
     this.editPost = this.editPost.bind(this)
@@ -30,11 +32,14 @@ export default class Posts extends Component {
     this.exitConfirmDeletePost = this.exitConfirmDeletePost.bind(this)
     this.applyEditPost = this.applyEditPost.bind(this)
     this.findDangerousTags = this.findDangerousTags.bind(this)
+    this.toggleSearch = this.toggleSearch.bind(this)
+    this.filterPosts = this.filterPosts.bind(this)
   }
   componentDidMount() {
     ajax.get('/api/getposts').then((response) => {
       this.setState({
-        data: response.data
+        data: response.data,
+        backupData: response.data
       })
     })
   }
@@ -68,6 +73,33 @@ export default class Posts extends Component {
     }
 
     return target.replace(/(<script[^*<]+>|<\/script>|<style>|<\/style>|<html>|<\/html>|<body>|<\/body>|<head>|<\/head>|<form[^*<]+>|<\/form>|<input[^*<]+>)/gim, replacer)
+  }
+  toggleSearch() {
+    this.setState({
+      isSearch: !this.state.isSearch
+    })
+  }
+  filterPosts() {
+    if (!this.refs.searchInput.value) {
+      this.setState({
+        data: this.state.backupData
+      })
+      return
+    }
+
+    let regexp = new RegExp(this.refs.searchInput.value, 'im')
+    let posts = this.state.backupData.filter((post) => {
+      let title = post.title
+      title = title.match(regexp)
+
+      if (title) {
+        return post
+      }
+    })
+
+    this.setState({
+      data: posts
+    })
   }
   addPost() {
     this.setState({
@@ -121,7 +153,8 @@ export default class Posts extends Component {
     ajax.post('/api/deletepost', {id: id}).then(() => {
       ajax.get('/api/getposts').then((response) => {
         this.setState({
-          data: response.data
+          data: response.data,
+          backupData: response.data
         })
       })
     })
@@ -196,6 +229,10 @@ export default class Posts extends Component {
       <ConfirmModal confirm={this.applyDeletePost} postId={this.state.postToDelete} exit={this.exitConfirmDeletePost} />
     ) : null
 
+    let searchInput = (this.state.isSearch) ? (
+      <input ref="searchInput" onChange={this.filterPosts} className="main-topbar__input" type="text"/>
+    ) : null
+
     return (
       <div>
         {modalAdd}
@@ -203,7 +240,8 @@ export default class Posts extends Component {
         {modalConfirm}
         <div className="main-topbar">
           <div className="main-topbar__button" onClick={this.addPost}>Add</div>
-          <div className="main-topbar__button">Search</div>
+          <div className="main-topbar__button" onClick={this.toggleSearch}>Search</div>
+          {searchInput}
         </div>
         <table className="main-menu">
           <tbody>

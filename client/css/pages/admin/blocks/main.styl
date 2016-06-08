@@ -8,10 +8,18 @@
   margin-left 1%
   box-shadow inset 0 -1px 0 desaturate(lighten($admin-color-secondary, 5%), 5%)
 
-.main-topbar__form
+.main-topbar__input
+  margin-left 10px
   display inline-block
+  vertical-align middle
+  border 1px solid desaturate(lighten($admin-color-secondary, 25%), 25%)
+  outline none
+  background-color desaturate(lighten($admin-color-secondary, 7%), 7%)
+  color desaturate(lighten($admin-color-secondary, 50%), 50%)
 
 .main-topbar__button
+  user-select none
+  vertical-align middle
   background-color transparent
   border none
   color #fff
@@ -46,6 +54,7 @@
 
 .main-menu-item__edit
 .main-menu-item__delete
+  user-select none
   width 5%
 
 .main-menu-item__date
