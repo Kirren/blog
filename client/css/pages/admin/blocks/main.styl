@@ -27,6 +27,7 @@
   padding 15px
   display inline-block
   cursor pointer
+  transition all .2s ease
   &:hover
     background-color desaturate(lighten($admin-color-secondary, 17%), 17%)
     box-shadow inset 0 -1px 0 desaturate(lighten($admin-color-secondary, 2%), 2%)
@@ -42,6 +43,7 @@
 .main-menu-item__edit
 .main-menu-item__delete
 .main-menu-item__title
+  transition all .2s ease
   padding 15px
   &:hover
     background-color desaturate(lighten($admin-color-secondary, 9%), 9%)
@@ -122,6 +124,15 @@
   padding 10px 0 5px
   font-size 18px
   color lighten($admin-color-secondary, 25%)
+
+.modal-post__exit
+.modal-post__button
+.modal-post__button_sm
+  user-select none
+  transition all .2s ease
+  &:hover
+    background-color lighten($admin-color-secondary, 18%)
+    color lighten($admin-color-secondary, 65%)
 
 .modal-post__button
   margin-top 15px

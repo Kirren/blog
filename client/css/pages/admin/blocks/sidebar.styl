@@ -18,6 +18,10 @@
   text-decoration none
   display block
   padding 15px 15px 15px 50px
+  transition all .2s ease
+  &:link
+  &:visited
+    color #fff
   &:hover
     background-color $admin-color-secondary
 
@@ -41,15 +45,22 @@
 .menu__button span
   position relative
 
-.menu__button:hover span::after
+.menu__button span::after
   position absolute
   content ''
+  width 6px
+  height 6px
+  transition all .2s ease
   top 50%
   right -15px
   transform translateY(-25%)
-  width 6px
-  height 6px
   border-radius 50%
+  background-color rgba(#fff, .0)
+
+.menu__button_active span::after
+  background-color #27b5ff
+
+.menu__button:hover span::after
   background-color #27b5ff
 
 .sidebar__logout
@@ -61,9 +72,12 @@
   position absolute
   bottom 0
   padding 25px 0
-  color #fff
   text-decoration none
   text-transform uppercase
   font-size 13px
+  transition all .2s ease
+  &:link
+  &:visited
+    color desaturate(lighten($admin-color-secondary, 25%), 25%)
   &:hover
-    background-color lighten($admin-color-secondary, 1.5%)
+    background-color darken($admin-color-secondary, 3.5%)
