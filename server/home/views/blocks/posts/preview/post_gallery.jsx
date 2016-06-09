@@ -2,40 +2,89 @@ import React from 'react'
 import marked from 'marked'
 
 export default class PostGallery extends React.Component {
-  render() {
-    let gallery = JSON.parse(this.props.data.gallery)
-    let preview = (this.props.preview) ? <a href={`/${this.props.url}/${this.props.data.id}`} className="post-body__button">read more</a> : null
-    let galleryHead = (this.props.preview) ? (
-      <div>
-        <div className="col-6-cycle">
-          <div style={{backgroundImage: `url(${gallery[0]})`}} className="post-head__picture post-head__picture_sm"></div>
-        </div>
-        <div className="col-6-cycle">
-          <div style={{backgroundImage: `url(${gallery[1]})`}} className="post-head__picture post-head__picture_sm"></div>
-        </div>
-        <div className="col-6-cycle">
-          <div style={{backgroundImage: `url(${gallery[2]})`}} className="post-head__picture post-head__picture_sm"></div>
-        </div>
-        <div className="col-6-cycle">
-          <div style={{backgroundImage: `url(${gallery[3]})`}} className="post-head__picture post-head__picture_sm">
-            <div className="post-gallery__text">{gallery.length}</div>
-          </div>
-        </div>
-      </div>
-    ) : (
-      gallery.map((pic) =>
+  constructor() {
+    super()
+    this.renderGallery = this.renderGallery.bind(this)
+  }
+  renderGallery() {
+    let data = JSON.parse(this.props.data.gallery)
+    if(this.props.preview) {
+      let gallery
+      switch (data.length) {
+        case 0 : gallery = null; break;
+        case 1 : {
+          gallery =
+            <div>
+              <div className="col-12-12">
+                <div style={{backgroundImage: `url(${data[0]})`}} className="post-head__picture post-head__picture_lg"></div>
+              </div>
+            </div>
+        } break;
+        case 2 : {
+          gallery =
+            <div>
+              <div className="col-6-cycle">
+                <div style={{backgroundImage: `url(${data[0]})`}} className="post-head__picture post-head__picture_sm"></div>
+              </div>
+              <div className="col-6-cycle">
+                <div style={{backgroundImage: `url(${data[1]})`}} className="post-head__picture post-head__picture_sm"></div>
+              </div>
+            </div>
+        } break;
+        case 3 : {
+          gallery =
+            <div>
+              <div className="col-6-cycle">
+                <div style={{backgroundImage: `url(${data[0]})`}} className="post-head__picture post-head__picture_sm"></div>
+              </div>
+              <div className="col-6-cycle">
+                <div style={{backgroundImage: `url(${data[1]})`}} className="post-head__picture post-head__picture_sm"></div>
+              </div>
+              <div className="col-12">
+                <div style={{backgroundImage: `url(${data[2]})`}} className="post-head__picture post-head__picture_sm"></div>
+              </div>
+            </div>
+        } break;
+        default : {
+          gallery =
+            <div>
+              <div className="col-6-cycle">
+                <div style={{backgroundImage: `url(${data[0]})`}} className="post-head__picture post-head__picture_sm"></div>
+              </div>
+              <div className="col-6-cycle">
+                <div style={{backgroundImage: `url(${data[1]})`}} className="post-head__picture post-head__picture_sm"></div>
+              </div>
+              <div className="col-6-cycle">
+                <div style={{backgroundImage: `url(${data[2]})`}} className="post-head__picture post-head__picture_sm"></div>
+              </div>
+              <div className="col-6-cycle">
+                <div style={{backgroundImage: `url(${data[3]})`}} className="post-head__picture post-head__picture_sm post-head__picture_black">
+                  <div className="post-gallery__text">{data.length}</div>
+                </div>
+              </div>
+            </div>
+        } break;
+      }
+      return gallery
+    } else {
+      let gallery = data.map((pic) =>
         <div className="col-12-12">
           <div style={{backgroundImage: `url(${pic})`}} className="post-head__picture post-head__picture_full"></div>
         </div>
       )
-    )
+      return gallery
+    }
+  }
+  render() {
+    let preview = (this.props.preview) ? <a href={`/${this.props.url}/${this.props.data.id}`} className="post-body__button">read more</a> : null
+
     return (
       <div>
         <div className="post">
 
         <div className="post-head">
           <div className="post-gallery">
-            {galleryHead}
+            {this.renderGallery()}
           </div>
         </div>
 

@@ -2,7 +2,7 @@ import mysql from 'mysql'
 
 export const db = mysql.createPool({
   host: 'localhost',
-  user: 'pavlovsch',
+  user: 'root',
   password: 'kowa4ogg',
   database: 'blog'
 })
