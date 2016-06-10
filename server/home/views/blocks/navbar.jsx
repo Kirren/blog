@@ -8,7 +8,7 @@ export default class Navbar extends React.Component {
         <nav className="navbar">
           <div className="container">
             <div className="col-4">
-              <h1 className="navbar-title">Palo Alto</h1>
+              <h1 className="navbar-title">Your Blog</h1>
             </div>
             <div className="col-8">
               <ul className="navbar-menu">
