@@ -2,3 +2,4 @@ node_modules
 public
 trash
 .DS_Store
+server/config.js
