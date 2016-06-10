@@ -3,7 +3,7 @@ import mysql from 'mysql'
 
 // SET CONNECTION TO YOUR DATABASE WITH YOUR CONFIG
 export const db = mysql.createPool({
-  host: 'host',
+  host: 'sss',
   user: 'user',
   password: 'password',
   database: 'database'
