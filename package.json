@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "rimraf public && gulp",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "server": "rimraf public && NODE_ENV=production gulp prod && node index.js"
   },
   "repository": {
     "type": "git",
@@ -45,6 +45,8 @@
     "babel-preset-react": "^6.5.0",
     "babel-preset-stage-0": "^6.5.0",
     "gulp": "^3.9.1",
+    "gulp-cssnano": "^2.1.2",
+    "gulp-if": "^2.0.1",
     "gulp-nodemon": "^2.0.7",
     "gulp-plumber": "^1.1.0",
     "gulp-postcss": "^6.1.1",

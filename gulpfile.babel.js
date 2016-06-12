@@ -5,9 +5,14 @@ import nodemon from 'gulp-nodemon'
 
 import stylus from 'gulp-stylus'
 import postcss from 'gulp-postcss'
+import cssNano from 'gulp-cssnano'
 
 import plumber from 'gulp-plumber'
 import path from 'path'
+
+import _if from 'gulp-if'
+
+const isProduction = process.env.NODE_ENV === 'production'
 
 gulp.task('js', () =>
   gulp.src(config.paths.src.js)
@@ -20,6 +25,7 @@ gulp.task('css', () =>
     .pipe(plumber())
     .pipe(stylus(config.stylus))
     .pipe(postcss(config.postcss))
+    .pipe(_if(isProduction, cssNano()))
     .pipe(plumber.stop())
     .pipe(gulp.dest(config.paths.build.css))
 )
@@ -52,3 +58,5 @@ gulp.task('server', ['js', 'css', 'fonts', 'img', 'watch'], () => {
 })
 
 gulp.task('default', ['server'])
+
+gulp.task('prod', ['js', 'css', 'fonts', 'img'])
