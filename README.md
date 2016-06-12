@@ -21,29 +21,29 @@
 ## Готовим блог
 ### Инициализация
 1. Скачать репозиторий и зайти в папку проекта
-```bash
-git clone https://github.com/pavlovsch/blog.git && cd blog
-```
+  ```bash
+  git clone https://github.com/pavlovsch/blog.git && cd blog
+  ```
 2. Ввести команду
-```bash
-npm install
-```
+  ```bash
+  npm install
+  ```
 3. Зайти в базу данных MySQL и ввести следующее:
-```sql
-CREATE DATABASE blog;
-```
-```sql
-USE blog;
-```
-```sql
-CREATE TABLE posts (id TINYTEXT, title TINYTEXT, text TEXT, action TINYTEXT, date TINYTEXT, video TINYTEXT, quote TINYTEXT, picture TINYTEXT, hashtags TINYTEXT, gallery JSON);
-```
-```sql
-create table users (id INT primary key auto_increment, username VARCHAR(100) unique, password VARCHAR(100));
-```
-```sql
-INSERT INTO users (username, password) VALUES ('user_name', 'user_password');
-```
+  ```sql
+  CREATE DATABASE blog;
+  ```
+  ```sql
+  USE blog;
+  ```
+  ```sql
+  CREATE TABLE posts (id TINYTEXT, title TINYTEXT, text TEXT, action TINYTEXT, date TINYTEXT, video TINYTEXT, quote TINYTEXT, picture TINYTEXT, hashtags TINYTEXT, gallery JSON);
+  ```
+  ```sql
+  create table users (id INT primary key auto_increment, username VARCHAR(100) unique, password VARCHAR(100));
+  ```
+  ```sql
+  INSERT INTO users (username, password) VALUES ('user_name', 'user_password');
+  ```
 4. Открыть ./server/config.js и настроить его
 
 ### Запуск
