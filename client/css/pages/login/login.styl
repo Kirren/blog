@@ -1,0 +1,66 @@
+body
+  background-color #f7f9fc
+
+.login
+  position absolute
+  width 100%
+  top 50%
+  transform translateY(-50%)
+  text-align center
+
+.login__form
+  padding 25px
+  background-color darken(#f7f9fc, 5%)
+  margin 0 auto
+  width 400px
+  border 1px solid darken(#f7f9fc, 15%)
+
+.login__labels
+  &::after
+    content ''
+    display block
+    clear both
+
+.login__label
+  margin-bottom 15px
+  display block
+  &::after
+    content ''
+    display block
+    clear both
+
+.login__label span
+  float left
+  color lighten(#000, 35%)
+
+.login__input
+  float right
+  border 2px solid $color-primary
+  box-shadow none
+  outline none
+
+.login__buttons
+  margin-top 25px
+  &::after
+    content ''
+    display block
+    clear both
+
+.login__button
+  font-size 14px
+  text-transform uppercase
+  padding 10px 0
+  width 150px
+  border none
+  background-color $color-primary
+  color #fff
+  display inline-block
+  text-decoration none
+  cursor pointer
+  &:link
+  &:visited
+    color #fff
+  &:first-child
+    float left
+  &:last-child
+    float right

@@ -10,7 +10,7 @@ export default class Sidebar extends Component {
           <Link activeClassName="menu__button_active" to="/posts" className="menu__button"> <span>Articles</span> </Link>
           <Link activeClassName="menu__button_active" to="/faq" className="menu__button"> <span>FAQ</span> </Link>
         </div>
-        <a href="#logout" className="sidebar__logout"> <span>log out</span> </a>
+        <a href="/admin/logout" className="sidebar__logout"> <span>log out</span> </a>
       </div>
     )
   }
