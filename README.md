@@ -63,6 +63,12 @@ npm run server
 * /search - поиск
 
 ## Что еще предстоит сделать:
+
+#### Общее:
+* About page
+* Archive page
+* Contact page
+
 #### Front-end:
 * Адаптивность
 * Подсказки для полей ввода

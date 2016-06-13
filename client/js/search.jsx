@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { render } from 'react-dom'
+import loadbar from './lib/loadbar'
 const ROOT = document.querySelector('#ROOT')
 
 // view layers
@@ -15,4 +16,5 @@ class Search extends Component {
   }
 }
 
+loadbar()
 render (<Search />, ROOT)

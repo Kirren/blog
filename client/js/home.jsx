@@ -1,1 +1,3 @@
-console.log('check')
+import loadbar from './lib/loadbar'
+
+loadbar()

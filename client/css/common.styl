@@ -225,13 +225,18 @@ a
   &:hover
     background-color lighten($color-primary, 25%)
 
-.load-bar
-  height 4px
-  width 100%
-  background-color $color-primary
-
 .navbar
   margin 75px 0
+
+#loadbar
+  height 3px
+  position fixed
+  width 0
+  top 0
+  left 0
+  background-color $color-primary
+  z-index 1000
+  transition all .5s ease
 
 .navbar-title
   font-size 42px

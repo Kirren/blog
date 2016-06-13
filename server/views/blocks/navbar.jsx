@@ -9,7 +9,6 @@ export default class Navbar extends React.Component {
     const searchLink = this.props.searchLink && 'navbar-menu__button_active' || ''
     return (
       <div>
-        <div className="load-bar"></div>
         <nav className="navbar">
           <div className="container">
             <div className="col-4">
