@@ -1,6 +1,6 @@
 import passport from 'passport'
 import passportLocal from 'passport-local'
-import { dbUsers } from '../config'
+import { dbUsers } from '../../config'
 
 const LocalStrategy = passportLocal.Strategy
 

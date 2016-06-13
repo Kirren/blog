@@ -15,19 +15,16 @@ import sessionMySQL from 'express-mysql-session'
 const MySQLStore = sessionMySQL(session)
 
 // page modules
-import home from './home'
-import admin from './admin'
-import login from './login'
+import home from './pages/home'
+import admin from './pages/admin'
+import login from './pages/login'
+import search from './pages/search'
 
 // other modules
-import api from './api'
-import authentication from './authentication'
+import api from './functionality/api'
+import authentication from './functionality/verification'
 
-app.set('views', [
-  path.resolve(__dirname, 'home/views'),
-  path.resolve(__dirname, 'admin/views'),
-  path.resolve(__dirname, 'login/views')
-])
+app.set('views', path.resolve(__dirname, 'views'))
 app.set('view engine', 'jsx')
 app.engine('jsx', jsx.createEngine())
 
@@ -61,6 +58,7 @@ app
   .use('/admin', admin.router)
   .use('/api', api.router)
   .use('/login', login.router)
+  .use('/search', search.router)
   .use('/', home.router)
 
 app.listen(config.PORT, (err) => {

@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { Component } from 'react'
 import { render } from 'react-dom'
 import { Router, Route, IndexRoute, hashHistory } from 'react-router'
 
@@ -9,7 +9,7 @@ import Sidebar from 'components/Sidebar/Sidebar'
 //import Dashboard from 'views/admin/Dashboard'
 import Posts from 'views/admin/Posts'
 
-class Admin extends React.Component {
+class Admin extends Component {
   render() {
     return (
       <div>

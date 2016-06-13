@@ -1,6 +1,7 @@
 import express from 'express'
+import verify from '../verification'
 import uuid from 'node-uuid'
-import { db } from '../config'
+import { db } from '../../config'
 import path from 'path'
 
 export const router = express.Router()
@@ -20,7 +21,7 @@ router.get('/getposts/:id', (req, res) => {
   })
 })
 
-router.post('/addpost', (req, res) => {
+router.post('/addpost', verify.isAuth(), (req, res) => {
   const body = {
     id: uuid.v1(),
     title: (req.body.title) ? req.body.title : null,
@@ -45,7 +46,7 @@ router.post('/addpost', (req, res) => {
   })
 })
 
-router.post('/deletepost', (req, res) => {
+router.post('/deletepost', verify.isAuth(), (req, res) => {
   const body = req.body
   const query = `DELETE FROM posts WHERE id=${db.escape(body.id)}`
   db.query(query, (err, result) => {
@@ -54,7 +55,7 @@ router.post('/deletepost', (req, res) => {
   })
 })
 
-router.post('/editpost', (req, res) => {
+router.post('/editpost', verify.isAuth(), (req, res) => {
   const body = req.body
   const query =
   `

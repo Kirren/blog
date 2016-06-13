@@ -15,7 +15,8 @@ export const paths = {
       path.resolve(__dirname, 'css/common.styl'),
       path.resolve(__dirname, 'css/pages/home/home.styl'),
       path.resolve(__dirname, 'css/pages/admin/admin.styl'),
-      path.resolve(__dirname, 'css/pages/login/login.styl')
+      path.resolve(__dirname, 'css/pages/login/login.styl'),
+      path.resolve(__dirname, 'css/pages/search/search.styl')
     ],
     fonts: [
       path.resolve(__dirname, 'fonts') + '/*.woff'
@@ -55,7 +56,8 @@ export const webpackConfig = {
   entry: {
     home: ['./home'],
     admin: ['./admin'],
-    login: ['./login']
+    login: ['./login'],
+    search: ['./search']
   },
   output: {
     filename: '[name].js'

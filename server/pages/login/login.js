@@ -5,7 +5,7 @@ import path from 'path'
 export const router = express.Router()
 
 router.get('/', (req, res) => {
-  res.render(path.resolve(__dirname, 'views/index.jsx'))
+  res.render('login')
 })
 
 router.post('/', passport.authenticate('local', {

@@ -15,7 +15,7 @@ export default class Home extends React.Component {
           <link rel="stylesheet" href="/css/home.css"/>
         </head>
         <body>
-          <Navbar />
+          <Navbar homeLink={true} />
           <Posts data={this.props}/>
           <script src="/js/common.js"></script>
           <script src="/js/home.js"></script>
