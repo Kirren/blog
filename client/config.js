@@ -57,7 +57,8 @@ export const webpackConfig = {
     home: ['./home'],
     admin: ['./admin'],
     login: ['./login'],
-    search: ['./search']
+    search: ['./search'],
+    vendor: ['react', 'react-dom', 'axios']
   },
   output: {
     filename: '[name].js'
@@ -76,7 +77,7 @@ export const webpackConfig = {
     ]
   },
   plugins: [
-    new webpack.optimize.CommonsChunkPlugin('common.js'),
+    new webpack.optimize.CommonsChunkPlugin('vendor' ,'common.js'),
     new webpack.DefinePlugin({
         'process.env': {
           'NODE_ENV': JSON.stringify('production')
