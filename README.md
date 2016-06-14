@@ -36,7 +36,7 @@ CREATE DATABASE blog;
 USE blog;
 ```
 ```sql
-CREATE TABLE posts (id TINYTEXT, title TINYTEXT, text TEXT, action TINYTEXT, date TINYTEXT, video TINYTEXT, quote TINYTEXT, picture TINYTEXT, hashtags TINYTEXT, gallery JSON);
+CREATE TABLE posts (id TINYTEXT unique, title TINYTEXT, text TEXT, action TINYTEXT, date TINYTEXT, altdate TINYTEXT, video TINYTEXT, quote TINYTEXT, picture TINYTEXT, hashtags TINYTEXT, gallery JSON);
 ```
 ```sql
 create table users (id INT primary key auto_increment, username VARCHAR(100) unique, password VARCHAR(100));
