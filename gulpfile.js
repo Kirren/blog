@@ -1,16 +1,15 @@
-import gulp from 'gulp'
-import webpack from 'webpack-stream'
-import * as config from './client/config'
-import nodemon from 'gulp-nodemon'
+const gulp = require('gulp')
+const webpack = require('webpack-stream')
+const config = require('./client/config')
+const nodemon = require('gulp-nodemon')
 
-import stylus from 'gulp-stylus'
-import postcss from 'gulp-postcss'
-import cssNano from 'gulp-cssnano'
+const stylus = require('gulp-stylus')
+const postcss = require('gulp-postcss')
+const cssNano = require('gulp-cssnano')
 
-import plumber from 'gulp-plumber'
-import path from 'path'
-
-import _if from 'gulp-if'
+const plumber = require('gulp-plumber')
+const resolve = require('path').resolve
+const _if = require('gulp-if')
 
 const isProduction = process.env.NODE_ENV === 'production'
 
@@ -43,10 +42,10 @@ gulp.task('img', () =>
 )
 
 gulp.task('watch', () => {
-  gulp.watch(path.resolve(__dirname, 'client/js') + '/**/*.*', ['js'])
-  gulp.watch(path.resolve(__dirname, 'client/css') + '/**/*.styl', ['css'])
-  gulp.watch(path.resolve(__dirname, 'client/fonts') + '/**/*.*', ['fonts'])
-  gulp.watch(path.resolve(__dirname, 'client/img') + '/**/*.*', ['img'])
+  gulp.watch(resolve(__dirname, 'client/js') + '/**/*.*', ['js'])
+  gulp.watch(resolve(__dirname, 'client/css') + '/**/*.styl', ['css'])
+  gulp.watch(resolve(__dirname, 'client/fonts') + '/**/*.*', ['fonts'])
+  gulp.watch(resolve(__dirname, 'client/img') + '/**/*.*', ['img'])
 })
 
 gulp.task('server', ['js', 'css', 'fonts', 'img', 'watch'], () => {

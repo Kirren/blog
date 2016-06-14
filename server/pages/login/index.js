@@ -1,5 +1,5 @@
-import * as login from './login'
+const login = require('./login')
 
-export default {
+module.exports = {
   router: login.router
 }

@@ -1,5 +1,5 @@
-import * as admin from './admin'
+const admin = require('./admin')
 
-export default {
+module.exports = {
   router: admin.router
 }

@@ -1,39 +1,38 @@
-import express from 'express'
-import jsx from 'express-react-views'
-import * as config from './config'
-import path from 'path'
+const express = require('express')
+const jsx = require('express-react-views')
+const config = require('./config')
+const resolve = require('path').resolve
 
 const app = express()
 
 // middlewares
-import compression from 'compression'
-import bodyParser from 'body-parser'
-import logger from 'morgan'
-import passport from 'passport'
-import session from 'express-session'
-import sessionMySQL from 'express-mysql-session'
-const MySQLStore = sessionMySQL(session)
+const compression = require('compression')
+const bodyParser = require('body-parser')
+const logger = require('morgan')
+const passport = require('passport')
+const session = require('express-session')
+const MySQLStore = require('express-mysql-session')(session)
 
 // page modules
-import home from './pages/home'
-import admin from './pages/admin'
-import login from './pages/login'
-import search from './pages/search'
+const home = require('./pages/home')
+const admin = require('./pages/admin')
+const login = require('./pages/login')
+const search = require('./pages/search')
 
 // other modules
-import api from './functionality/api'
-import authentication from './functionality/verification'
+const api = require('./functionality/api')
+const verify = require('./functionality/verification')
 
-app.set('views', path.resolve(__dirname, 'views'))
+app.set('views', resolve(__dirname, 'views'))
 app.set('view engine', 'jsx')
 app.engine('jsx', jsx.createEngine())
 
 app.use(logger('dev'))
 app.use(compression({level: 9}))
-app.use(express.static(path.resolve(__dirname, '../public')))
+app.use(express.static(resolve(__dirname, '../public')))
 app.use(bodyParser.urlencoded({extended: false}))
 app.use(bodyParser.json())
-authentication.init(app)
+verify.init(app)
 app
   .use(session({
     store: new MySQLStore({
@@ -66,4 +65,4 @@ app.listen(config.PORT, (err) => {
     else console.log(`Server started on port: ${ config.PORT }`)
   })
 
-export default app
+module.exports = app

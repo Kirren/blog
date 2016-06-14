@@ -1,58 +1,56 @@
-import webpack from 'webpack'
+const webpack = require('webpack')
+const resolve = require('path').resolve
 
 // css dependencies
-import lost from 'lost'
-import rucksack from 'rucksack-css'
-import autoprefixer from 'autoprefixer'
+const lost = require('lost')
+const rucksack = require('rucksack-css')
+const autoprefixer = require('autoprefixer')
 
-// utils
-import path from 'path'
-
-export const paths = {
+module.exports.paths = {
   src: {
-    js: path.resolve(__dirname, 'js/home.js'),
+    js: resolve(__dirname, 'js/home.js'),
     css: [
-      path.resolve(__dirname, 'css/common.styl'),
-      path.resolve(__dirname, 'css/pages/home/home.styl'),
-      path.resolve(__dirname, 'css/pages/admin/admin.styl'),
-      path.resolve(__dirname, 'css/pages/login/login.styl'),
-      path.resolve(__dirname, 'css/pages/search/search.styl')
+      resolve(__dirname, 'css/common.styl'),
+      resolve(__dirname, 'css/pages/home/home.styl'),
+      resolve(__dirname, 'css/pages/admin/admin.styl'),
+      resolve(__dirname, 'css/pages/login/login.styl'),
+      resolve(__dirname, 'css/pages/search/search.styl')
     ],
     fonts: [
-      path.resolve(__dirname, 'fonts') + '/*.woff'
+      resolve(__dirname, 'fonts') + '/*.woff'
     ],
     img: [
-      path.resolve(__dirname, 'img') + '/*.+(jpg|jpeg|png|gif|svg)'
+      resolve(__dirname, 'img') + '/*.+(jpg|jpeg|png|gif|svg)'
     ]
   },
   build: {
-    js: path.resolve(__dirname, '../public/js/'),
-    css: path.resolve(__dirname, '../public/css/'),
-    fonts: path.resolve(__dirname, '../public/fonts/'),
-    img: path.resolve(__dirname, '../public/img/')
+    js: resolve(__dirname, '../public/js/'),
+    css: resolve(__dirname, '../public/css/'),
+    fonts: resolve(__dirname, '../public/fonts/'),
+    img: resolve(__dirname, '../public/img/')
   }
 }
 
-export const stylus = {
+module.exports.stylus = {
   'include css': true,
-  import: [ path.resolve(__dirname, 'css/variables.styl') ]
+  import: [ resolve(__dirname, 'css/variables.styl') ]
 }
 
-export const postcss = [
+module.exports.postcss = [
   lost(),
   rucksack(),
   autoprefixer()
 ]
 
-export const webpackConfig = {
+const webpackConfig = {
   resolve: {
     extensions: ['', '.jsx', '.js'],
     alias: {
-      components: path.resolve(__dirname, 'js/components'),
-      views: path.resolve(__dirname, 'js/views')
+      components: resolve(__dirname, 'js/components'),
+      views: resolve(__dirname, 'js/views')
     }
   },
-  context: path.resolve(__dirname, 'js'),
+  context: resolve(__dirname, 'js'),
   entry: {
     home: ['./home'],
     admin: ['./admin'],
@@ -67,7 +65,7 @@ export const webpackConfig = {
     loaders: [
       {
         test: /\.jsx?/,
-        include: path.resolve(__dirname, 'js'),
+        include: resolve(__dirname, 'js'),
         loader: 'babel',
         babelrc: false,
         query: {
@@ -95,3 +93,5 @@ if (process.env.NODE_ENV === 'production') {
     })
   ])
 }
+
+module.exports.webpackConfig = webpackConfig

@@ -1,6 +1,6 @@
-import * as authentication from './init'
+const verify = require('./init')
 
-export default {
-  init: authentication.init,
-  isAuth: authentication.isAuth
+module.exports = {
+  init: verify.init,
+  isAuth: verify.isAuth
 }

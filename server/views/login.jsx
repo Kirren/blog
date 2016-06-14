@@ -21,7 +21,7 @@ export default class Login extends React.Component {
                 </label>
                 <label className="login__label">
                   <span>Password:</span>
-                  <input name="password" type="text" className="login__input"/>
+                  <input name="password" type="password" className="login__input"/>
                 </label>
               </div>
 

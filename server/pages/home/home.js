@@ -1,8 +1,5 @@
-import express from 'express'
-import { db } from '../../config'
-import path from 'path'
-
-export const router = express.Router()
+const router = require('express').Router()
+const db = require('../../config').db
 
 router.get('/', (req, res) => {
   res.redirect('/1')
@@ -36,3 +33,5 @@ router.get('/:page/:id', (req, res) => {
     })
   })
 })
+
+module.exports.router = router

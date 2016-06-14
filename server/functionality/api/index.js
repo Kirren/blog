@@ -1,5 +1,5 @@
-import * as api from './api'
+const api = require ('./api')
 
-export default {
+module.exports = {
   router: api.router
 }

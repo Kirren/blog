@@ -1,8 +1,7 @@
-import express from 'express'
-import path from 'path'
-
-export const router = express.Router()
+const router = require('express').Router()
 
 router.get('/', (req, res) => {
   res.render('search')
 })
+
+module.exports.router = router

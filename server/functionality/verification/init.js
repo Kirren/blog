@@ -1,8 +1,7 @@
-import passport from 'passport'
-import passportLocal from 'passport-local'
-import { dbUsers } from '../../config'
+const passport = require('passport')
+const dbUsers = require('../../config').dbUsers
 
-const LocalStrategy = passportLocal.Strategy
+const LocalStrategy = require('passport-local').Strategy
 
 function findUser(username, cb) {
   const query = `SELECT * FROM users WHERE username = ${dbUsers.escape(username)}`
@@ -25,7 +24,7 @@ passport.deserializeUser((username, cb) => {
   findUser(username, cb)
 })
 
-export function init() {
+module.exports.init = function () {
   passport.use( new LocalStrategy((username, password, done) => {
     findUser(username, (err, user) => {
       if (err) return done(err)
@@ -36,7 +35,7 @@ export function init() {
   }))
 }
 
-export function isAuth() {
+module.exports.isAuth = function () {
   return function (req, res, next) {
     if (req.isAuthenticated()) {
       return next()

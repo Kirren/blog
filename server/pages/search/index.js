@@ -1,5 +1,5 @@
-import * as search from './search'
+const search = require('./search')
 
-export default {
+module.exports = {
   router: search.router
 }

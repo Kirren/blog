@@ -1,9 +1,9 @@
-import mysql from 'mysql'
+const mysql = require('mysql').createPool
 
-export const PORT = process.env.PORT || 8080
+module.exports.PORT = process.env.PORT || 8080
 
 // SET CONNECTION TO YOUR MAIN DATABASE WITH YOUR CONFIG
-export const db = mysql.createPool({
+module.exports.db = mysql({
   host: 'localhost',
   user: 'root',
   password: 'password',
@@ -12,7 +12,7 @@ export const db = mysql.createPool({
 
 // SET CONNECTION THAT HANDLES USER SESSION
 // NO NEED TO CREATE TABLE, IT WILL ADD IT BY SELF
-export const dbSession = mysql.createPool({
+module.exports.dbSession = mysql({
   host: 'localhost',
   user: 'root',
   password: 'password',
@@ -20,7 +20,7 @@ export const dbSession = mysql.createPool({
 })
 
 // SET CONNECTION TO DATABASE THAT HANDLES USER ACCOUNTS
-export const dbUsers = mysql.createPool({
+module.exports.dbUsers = mysql({
   host: 'localhost',
   user: 'root',
   password: 'password',

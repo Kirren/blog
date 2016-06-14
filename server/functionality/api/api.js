@@ -1,10 +1,7 @@
-import express from 'express'
-import verify from '../verification'
-import uuid from 'node-uuid'
-import { db } from '../../config'
-import path from 'path'
-
-export const router = express.Router()
+const router = require('express').Router()
+const verify = require('../verification')
+const uuid = require('node-uuid')
+const db = require('../../config').db
 
 router.get('/getposts', (req, res) => {
   const query = `SELECT * FROM posts`
@@ -68,3 +65,5 @@ router.post('/editpost', verify.isAuth(), (req, res) => {
     else res.end()
   })
 })
+
+module.exports.router = router

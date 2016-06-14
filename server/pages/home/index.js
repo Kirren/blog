@@ -1,5 +1,5 @@
-import * as home from './home'
+const home = require('./home')
 
-export default {
+module.exports = {
   router: home.router
 }
