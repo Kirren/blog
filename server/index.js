@@ -1,7 +1,7 @@
 const express = require('express')
 const jsx = require('express-react-views')
 const config = require('./config')
-const resolve = require('path').resolve
+const { resolve } = require('path')
 
 const app = express()
 

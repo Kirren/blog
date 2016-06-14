@@ -1,5 +1,5 @@
 const router = require('express').Router()
-const db = require('../../config').db
+const { db } = require('../../config')
 const verify = require('../../functionality/verification')
 
 router.get('/', verify.isAuth(), (req, res) => {

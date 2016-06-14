@@ -1,7 +1,7 @@
 const router = require('express').Router()
 const verify = require('../verification')
 const uuid = require('node-uuid')
-const db = require('../../config').db
+const { db } = require('../../config')
 
 router.get('/getposts', (req, res) => {
   const query = `SELECT * FROM posts`

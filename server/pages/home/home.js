@@ -1,5 +1,5 @@
 const router = require('express').Router()
-const db = require('../../config').db
+const { db } = require('../../config')
 
 router.get('/', (req, res) => {
   res.redirect('/1')
