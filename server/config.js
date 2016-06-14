@@ -10,8 +10,8 @@ const connection = mysql.createConnection({
 connection.connect()
 connection.query(`create database if not exists blogDB`, (err, res) => {if (err) throw err})
 connection.query('use blogDB', (err, res) => {if (err) throw err})
-connection.query(`create table if not exists posts (id TINYTEXT, title TINYTEXT, text TEXT, date TINYTEXT, altdate TINYTEXT, action TINYTEXT, picture TINYTEXT, gallery JSON, video TINYTEXT, quote TINYTEXT, hashtags TINYTEXT)`, (err, res) => {if (err) throw err})
-connection.query(`create table if not exists users (id INT primary key auto_increment, username VARCHAR(100) unique, password VARCHAR(100))`, (err, res) => { if (err) throw err })
+connection.query(`create table if not exists posts (id TINYTEXT, title TINYTEXT, text TEXT, date TINYTEXT, altdate TINYTEXT, action TINYTEXT, picture TINYTEXT, gallery JSON, video TINYTEXT, quote TINYTEXT, hashtags TINYTEXT) ENGINE=InnoDB CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci`, (err, res) => {if (err) throw err})
+connection.query(`create table if not exists users (id INT primary key auto_increment, username VARCHAR(100) unique, password VARCHAR(100)) ENGINE=InnoDB CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci`, (err, res) => { if (err) throw err })
 
 // PLEASE SET ADMIN USERNAME AND PASSWORD
 connection.query(`INSERT IGNORE INTO users (username, password) VALUES ('admin', 'password')`)
