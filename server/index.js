@@ -31,8 +31,8 @@ app.engine('jsx', jsx.createEngine())
 app.use(logger('dev'))
 app.use(compression({level: 9}))
 app.use(express.static(resolve(__dirname, '../public')))
-app.use(bodyParser.urlencoded({extended: false}))
 app.use(bodyParser.json())
+app.use(bodyParser.urlencoded({extended: false}))
 verify.init(app)
 app
   .use(session({
@@ -46,7 +46,7 @@ app
           data: 'data'
         }
       }
-    }, config.dbSession),
+    }, config.db),
     secret: 'session_cookie_secret',
     resave: true,
     saveUninitialized: false

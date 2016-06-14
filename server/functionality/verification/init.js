@@ -1,11 +1,11 @@
 const passport = require('passport')
-const { dbUsers } = require('../../config')
+const { db } = require('../../config')
 
 const LocalStrategy = require('passport-local').Strategy
 
 function findUser(username, cb) {
-  const query = `SELECT * FROM users WHERE username = ${dbUsers.escape(username)}`
-  dbUsers.query(query, (err, result) => {
+  const query = `SELECT * FROM users WHERE username = ${db.escape(username)}`
+  db.query(query, (err, result) => {
     if (err) throw err
     const user = result[0]
     if (user && username === user.username) {
