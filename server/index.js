@@ -18,6 +18,7 @@ const home = require('./pages/home')
 const admin = require('./pages/admin')
 const login = require('./pages/login')
 const search = require('./pages/search')
+const archive = require('./pages/archive')
 
 // other modules
 const api = require('./functionality/api')
@@ -58,6 +59,7 @@ app
   .use('/api', api.router)
   .use('/login', login.router)
   .use('/search', search.router)
+  .use('/archive', archive.router)
   .use('/', home.router)
 
 app.listen(config.PORT, (err) => {

@@ -10,7 +10,7 @@ class Post extends Component {
           <div className="post-body">
             <div className="post-body__action">{this.props.data.action}</div>
             <div className="post-body__date">{this.props.data.date}</div>
-            <h2 className="post-body__title">{this.props.data.title}</h2>
+            <h2 className="post-body__title">{this.props.data.title || this.props.data.quote}</h2>
             <div className="post-body__footer">
               <a href={`/search/${this.props.data.id}`} className="post-body__button">read more</a>
             </div>
@@ -41,27 +41,30 @@ export default class Main extends Component {
   }
   renderPosts(ev) {
     ev.preventDefault()
-    let target = findDOMNode(this.refs.searchInput)
-    if (!target) {
+    if (!this.refs.searchInput) {
       return
     }
-    if (!target.value) {
+    if (!this.refs.searchInput.value) {
       this.setState({
         data: this.state.backupData
       })
       return
     }
-
-    let regexp = new RegExp(target.value, 'im')
+    console.log(this.refs.searchInput.value)
+    let regexp = new RegExp(this.refs.searchInput.value, 'im')
     let posts = this.state.backupData.filter((post) => {
-      let title = post.title
-      title = title.match(regexp)
-
-      if (title) {
-        return post
+      if (post.title) {
+        let found = post.title.match(regexp)
+        if (found) {
+          return post
+        }
+      } else if (post.quote) {
+        let found = post.quote.match(regexp)
+        if (found) {
+          return post
+        }
       }
     })
-
     let renderedPosts = posts.map((data, index) =>
       <Post key={index} data={data} />
     )

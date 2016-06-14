@@ -25,6 +25,7 @@ router.post('/addpost', verify.isAuth(), (req, res) => {
     text: (req.body.text) ? req.body.text : null,
     action: (req.body.action) ? req.body.action : null,
     date: (req.body.date) ? req.body.date : null,
+    altdate: (req.body.altdate) ? req.body.altdate : null,
     video: (req.body.video) ? req.body.video : null,
     quote: (req.body.quote) ? req.body.quote : null,
     picture: (req.body.picture) ? req.body.picture : null,
@@ -33,8 +34,8 @@ router.post('/addpost', verify.isAuth(), (req, res) => {
   }
   const query =
   `
-  INSERT INTO posts (id, title, text, action, date, video, quote, picture, hashtags, gallery)
-  VALUES (${db.escape(body.id)}, ${db.escape(body.title)}, ${db.escape(body.text)}, ${db.escape(body.action)}, ${db.escape(body.date)}, ${db.escape(body.video)}, ${db.escape(body.quote)}, ${db.escape(body.picture)}, ${db.escape(body.hashtags)}, ${db.escape(body.gallery)})
+  INSERT INTO posts (id, title, text, action, date, video, quote, picture, hashtags, gallery, altdate)
+  VALUES (${db.escape(body.id)}, ${db.escape(body.title)}, ${db.escape(body.text)}, ${db.escape(body.action)}, ${db.escape(body.date)}, ${db.escape(body.video)}, ${db.escape(body.quote)}, ${db.escape(body.picture)}, ${db.escape(body.hashtags)}, ${db.escape(body.gallery)}, ${db.escape(body.altdate)})
   `
 
   db.query(query, (err, result) => {

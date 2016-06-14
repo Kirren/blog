@@ -90,11 +90,16 @@ export default class Posts extends Component {
 
     let regexp = new RegExp(this.refs.searchInput.value, 'im')
     let posts = this.state.backupData.filter((post) => {
-      let title = post.title
-      title = title.match(regexp)
-
-      if (title) {
-        return post
+      if (post.title) {
+        let found = post.title.match(regexp)
+        if (found) {
+          return post
+        }
+      } else if (post.quote) {
+        let found = post.quote.match(regexp)
+        if (found) {
+          return post
+        }
       }
     })
 
@@ -168,6 +173,7 @@ export default class Posts extends Component {
       case 'default': ajax.post('/api/addpost', {
         title: obj.title,
         date: `${(new Date).getDate()}/${(new Date).getMonth() + 1}/${(new Date).getFullYear()}`,
+        altdate: `${(new Date).getMonth() + 1}/${(new Date).getFullYear()}`,
         text: obj.text,
         hashtags: obj.hashtags,
         action: 'default'
@@ -177,6 +183,7 @@ export default class Posts extends Component {
         title: obj.title,
         picture: obj.picture,
         date: `${(new Date).getDate()}/${(new Date).getMonth() + 1}/${(new Date).getFullYear()}`,
+        altdate: `${(new Date).getMonth() + 1}/${(new Date).getFullYear()}`,
         text: obj.text,
         hashtags: obj.hashtags,
         action: 'picture'
@@ -186,6 +193,7 @@ export default class Posts extends Component {
         title: obj.title,
         gallery: JSON.stringify(obj.gallery),
         date: `${(new Date).getDate()}/${(new Date).getMonth() + 1}/${(new Date).getFullYear()}`,
+        altdate: `${(new Date).getMonth() + 1}/${(new Date).getFullYear()}`,
         text: obj.text,
         hashtags: obj.hashtags,
         action: 'gallery'
@@ -194,6 +202,7 @@ export default class Posts extends Component {
       case 'quote': ajax.post('/api/addpost', {
         quote: obj.quote,
         date: `${(new Date).getDate()}/${(new Date).getMonth() + 1}/${(new Date).getFullYear()}`,
+        altdate: `${(new Date).getMonth() + 1}/${(new Date).getFullYear()}`,
         text: obj.text,
         action: 'quote'
       }); break;
@@ -201,6 +210,7 @@ export default class Posts extends Component {
       case 'video': ajax.post('/api/addpost', {
         title: obj.title,
         date: `${(new Date).getDate()}/${(new Date).getMonth() + 1}/${(new Date).getFullYear()}`,
+        altdate: `${(new Date).getMonth() + 1}/${(new Date).getFullYear()}`,
         video: obj.video,
         hashtags: obj.hashtags,
         action: 'video'

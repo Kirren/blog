@@ -61,12 +61,12 @@ npm run server
 * /admin - админ-панель
 * /login - логин-панель
 * /search - поиск
+* /archive - архив
 
 ## Что еще предстоит сделать:
 
 #### Общее:
 * About page
-* Archive page
 * Contact page
 
 #### Front-end:
