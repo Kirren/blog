@@ -28,7 +28,7 @@ export default class ModalEditPost extends Component {
       video: this.state.video,
       quote: this.state.quote,
       hashtags: this.state.hashtags,
-      gallery: JSON.stringify(this.state.gallery)
+      gallery: (this.state.gallery) ? JSON.stringify(this.state.gallery) : null
     })
   }
   handleChange(ev) {
