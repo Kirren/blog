@@ -17,11 +17,7 @@ export default class AddPost extends Component {
     this.selectType = this.selectType.bind(this)
     this.handlerType = this.handlerType.bind(this)
     this.receiveData = this.receiveData.bind(this)
-    this.avoidSubmit = this.avoidSubmit.bind(this)
     this.checkPicture = this.checkPicture.bind(this)
-  }
-  avoidSubmit(ev) {
-    ev.preventDefault()
   }
   selectType(ev) {
     let target = findDOMNode(ev.target).getAttribute('value')
@@ -30,7 +26,7 @@ export default class AddPost extends Component {
     })
   }
   handlerType(ev) {
-    let content = findDOMNode(ev.target).value || findDOMNode(ev.target).textContent
+    let content = findDOMNode(ev.target).value
     let id = findDOMNode(ev.target).getAttribute('id')
     switch (id) {
       case 'modal-post__title': this.setState({

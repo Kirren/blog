@@ -1,0 +1,53 @@
+body
+  background-color $color-bg
+
+.post-form__input
+.post-form__textarea
+  background-color $color-bg
+  border 2px solid transparent
+  box-shadow none
+  outline none
+  font-size 18px
+  color #888
+  padding 20px 20px
+  transition all .2s ease
+  &:focus
+    border-color $color-primary
+
+.post-form__input:last-child::after
+  clear both
+  content ''
+  display block
+
+#post-form__name
+  float left
+  width 48%
+
+#post-form__email
+  float right
+  width 48%
+
+#post-form__subject
+  margin-top 30px
+  float left
+  width 100%
+
+#post-form__textarea
+  margin-top 30px
+  width 100%
+  min-height 400px
+
+.post-form__button
+  cursor pointer
+  display inline-block
+  margin-top 40px
+  background-color transparent
+  border none
+  box-shadow none
+  outline none
+  font-size 28px
+  text-transform uppercase
+  color $color-primary
+  transition all .2s ease
+  &:hover
+    color lighten($color-primary, 50%)

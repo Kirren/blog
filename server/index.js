@@ -19,6 +19,8 @@ const admin = require('./pages/admin')
 const login = require('./pages/login')
 const search = require('./pages/search')
 const archive = require('./pages/archive')
+const about = require('./pages/about')
+const contact = require('./pages/contact')
 
 // other modules
 const api = require('./functionality/api')
@@ -28,8 +30,11 @@ app.set('views', resolve(__dirname, 'views'))
 app.set('view engine', 'jsx')
 app.engine('jsx', jsx.createEngine())
 
-app.use(logger('dev'))
-app.use(compression({level: 9}))
+if (process.env.NODE_ENV !== 'production') {
+  app.use(logger('dev'))
+}
+
+app.use(compression())
 app.use(express.static(resolve(__dirname, '../public')))
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({extended: false}))
@@ -60,6 +65,8 @@ app
   .use('/login', login.router)
   .use('/search', search.router)
   .use('/archive', archive.router)
+  .use('/about', about.router)
+  .use('/contact', contact.router)
   .use('/', home.router)
 
 app.listen(config.PORT, (err) => {

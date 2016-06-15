@@ -15,7 +15,9 @@ module.exports.paths = {
       resolve(__dirname, 'css/pages/admin/admin.styl'),
       resolve(__dirname, 'css/pages/login/login.styl'),
       resolve(__dirname, 'css/pages/search/search.styl'),
-      resolve(__dirname, 'css/pages/archive/archive.styl')
+      resolve(__dirname, 'css/pages/archive/archive.styl'),
+      resolve(__dirname, 'css/pages/about/about.styl'),
+      resolve(__dirname, 'css/pages/contact/contact.styl')
     ],
     fonts: [
       resolve(__dirname, 'fonts') + '/*.woff'
@@ -58,6 +60,8 @@ const webpackConfig = {
     login: ['./login'],
     search: ['./search'],
     archive: ['./archive'],
+    about: ['./about'],
+    contact: ['./contact'],
     vendor: ['react', 'react-dom', 'axios']
   },
   output: {
