@@ -199,7 +199,7 @@ a
 
 .post-body__tags
   float right
-  font-size 15px
+  font-size responsive 11px 15px
   color $color-text-active
   word-spacing 10px
 
@@ -321,6 +321,9 @@ a
       content 'X'
 
 +below(700px)
+  .post-body__tags
+    clear both
+    float left
 
   .post-head__picture
     min-height 35vh

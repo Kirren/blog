@@ -1,5 +1,5 @@
 body
-  background-color #f7f9fc
+  background-color $admin-color-secondary
 
 .login
   position absolute
@@ -10,10 +10,11 @@ body
 
 .login__form
   padding 25px
-  background-color darken(#f7f9fc, 5%)
+  background-color lighten($admin-color-secondary, 10%)
   margin 0 auto
-  width 400px
-  border 1px solid darken(#f7f9fc, 15%)
+  min-width 400px
+  max-width 400px
+  border 1px solid darken($admin-color-secondary, 10%)
 
 .login__labels
   &::after
@@ -31,13 +32,16 @@ body
 
 .login__label span
   float left
-  color lighten(#000, 35%)
+  color #fff
 
 .login__input
   float right
-  border 2px solid $color-primary
+  color #fff
+  background-color lighten($admin-color-secondary, 2.5%)
+  border none
   box-shadow none
   outline none
+  border 1px solid $admin-color-secondary
 
 .login__buttons
   margin-top 25px
@@ -50,17 +54,26 @@ body
   font-size 14px
   text-transform uppercase
   padding 10px 0
-  width 150px
+  min-width 150px
   border none
-  background-color $color-primary
+  background-color desaturate(lighten($admin-color-secondary, 25%),15%)
   color #fff
   display inline-block
   text-decoration none
   cursor pointer
+  transition all .2s ease
   &:link
   &:visited
     color #fff
+  &:hover
+    background-color lighten($admin-color-secondary, 35%)
   &:first-child
     float left
   &:last-child
     float right
+
++below(650px)
+  .login__form
+    min-width 100px
+  .login__button
+    min-width 130px
