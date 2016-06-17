@@ -25,6 +25,7 @@ loadbar()
 render(
 <Router history={hashHistory}>
   <Route path="/" component={Admin}>
+    <IndexRoute path="/posts" component={Posts} />
     <Route path="/posts" component={Posts} />
   </Route>
 </Router>

@@ -25,7 +25,7 @@
   box-sizing border-box
 
 html
-  font-size 17px
+  font-size responsive 14px 17px
 
 body
   color $color-text
@@ -62,7 +62,7 @@ a
 .post-body__title span
   margin-top 25px
   display block
-  font-size 17px
+  font-size responsive 12px 17px
   font-family 'Open Sans Light'
   line-height 1.7
   font-weight normal
@@ -124,7 +124,7 @@ a
   left 50%
   transform translateY(-40%) translateX(-50%)
   color #fff
-  font-size 78px
+  font-size responsive 50px 78px
   font-family 'Open Sans Light'
   &::after
     position absolute
@@ -143,14 +143,14 @@ a
   display inline-block
 
 .post-body__date
-  font-size 14px
+  font-size responsive 12px 14px
   font-family 'Open Sans Bold'
   color $color-text-active
   margin-bottom 2%
 
 .post-body__title
   display block
-  font-size 40px
+  font-size responsive 20px 40px
   font-weight normal
   font-family 'Open Sans Bold'
   margin 0
@@ -174,7 +174,7 @@ a
 .post-body__text_quote
   line-height 1.3
   font-style italic
-  font-size 40px
+  font-size responsive 20px 40px
 
 .post-body__action
   position absolute
@@ -186,7 +186,7 @@ a
 
 .post-body__button
   float left
-  font-size 21px
+  font-size responsive 16px 21px
   font-family 'Open Sans Bold'
   color $color-primary
   text-transform uppercase
@@ -248,7 +248,7 @@ a
   transition all .5s ease
 
 .navbar-title
-  font-size 42px
+  font-size responsive 21px 42px
   margin 0
   padding 0
   color $color-text
@@ -258,7 +258,6 @@ a
   list-style-type none
   margin 0
   padding 0
-  padding-top 8px
   text-align right
 
 .navbar-menu li
@@ -271,6 +270,7 @@ a
   margin 0 0 0 10px
 
 .navbar-menu__button
+  font-size responsive 15px 17px
   margin 0 10px
   text-transform uppercase
   text-decoration none
@@ -290,3 +290,96 @@ a
   &:link
   &:visited
     color $color-text-active
+
+.navbar-menu-button
+  float right
+  display none
+  padding 5px 10px
+  background-color $color-primary
+  color #fff
+  border-radius 5px
+  box-shadow 0 2px 0 darken($color-primary, 50%)
+  position relative
+  z-index 1000
+  transition all .5s ease
+  user-select none
+  top 25px
+  right 1%
+  display block
+  cursor pointer
+  &::before
+    content 'MENU'
+
+.navbar-menu-trigger
+  display none
+  &:[not]:checked ~ .navbar-menu
+    visibility hidden
+  &:checked ~ .navbar-menu
+    top 0
+    visibility visible
+  &:checked ~ label .navbar-menu-button
+    background-color transparent
+    top 17px
+    font-size 18px
+    font-weight bold
+    box-shadow none
+    &::before
+      content 'X'
+
++below(700px)
+
+  .post-head__picture
+    min-height 35vh
+
+  .post-body__action
+    top 10px
+
+  .navbar .col-4
+    lost-column 11/12
+
+  .navbar .col-8
+    lost-column 1/12
+
+  .navbar
+    margin 25px 0
+
+  .navbar-menu-button
+    position fixed
+    display block
+
+  .navbar-menu
+    text-align center
+    transition all .2s ease
+    z-index 999
+    background $color-primary
+    width 100%
+    height 100%
+    position fixed
+    top -100%
+    right 0
+
+  .navbar-menu li
+    display block
+
+  .navbar-menu li:first-child .navbar-menu__button
+    margin 0
+
+  .navbar-menu li:last-child .navbar-menu__button
+    margin 0
+
+  .navbar-menu__button
+    margin 0
+    color #fff
+    padding 3% 0
+    &:hover
+      background-color darken($color-primary, 50%)
+      box-shadow none
+    &:link
+    &:visited
+      color #fff
+
+  .navbar-menu__button_active
+    color lighten($color-primary, 50%)
+    &:link
+    &:visited
+      color lighten($color-primary, 50%)

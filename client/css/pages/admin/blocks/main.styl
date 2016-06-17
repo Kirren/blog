@@ -133,6 +133,7 @@
 .modal-post__exit
 .modal-post__button
 .modal-post__button_sm
+  z-index 1000
   user-select none
   transition all .2s ease
   &:hover
@@ -158,6 +159,9 @@
 .modal-post__heading_sm
   text-transform uppercase
   margin-bottom 4%
+
+.modal-post-radio
+  display inline-block
 
 .modal-post__radio
   display inline-block
@@ -197,7 +201,7 @@
 .info-modal
   z-index 999
   position absolute
-  top 0
+  bottom 10px
   left 200px
   padding 5px 15px
   color #fff
@@ -217,3 +221,37 @@
 
 .info-modal span
   color lighten($color-primary, 50%)
+
++below(800px)
+  .main
+  .main-menu
+  .main-topbar
+    margin-left 0
+
+  .modal-post
+    position absolute
+    width 100%
+    min-height 100vh
+    top 0
+    right 0
+    bottom 0
+    left 0
+    &::after
+      position fixed
+      content ''
+      top 0
+      right 0
+      bottom 0
+      left 0
+      background-color $admin-color-secondary
+      z-index -10
+
++below(650px)
+  .modal-post__exit
+    right 2%
+    top 2%
+  .modal-post-radio
+    padding 10px 0
+    display block
+  .info-modal
+    left 25px

@@ -45,9 +45,21 @@ body
   border none
   box-shadow none
   outline none
-  font-size 28px
+  font-size responsive 14px 28px
   text-transform uppercase
   color $color-primary
   transition all .2s ease
   &:hover
     color lighten($color-primary, 50%)
+
++below(700px)
+  .post-form__input
+  .post-form__textarea
+    padding 10px
+
+  #post-form__subject
+  #post-form__textarea
+    margin-top 15px
+
+  .post-form__button
+    margin-top 20px

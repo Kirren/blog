@@ -182,17 +182,31 @@ export default class AddPost extends Component {
         <div className="modal-post__exit" onClick={this.props.exit}>Exit</div>
         <form action="modal-post__form">
           <div className="modal-post__heading">Select the type of post:</div>
-          <span className="modal-post__radio-text">Default:</span>
-          <input className="modal-post__radio" name="post-type" type="radio" value="default"
-          onClick={this.selectType} />
-          <span className="modal-post__radio-text">Default with picture:</span>
-          <input className="modal-post__radio" name="post-type" type="radio" value="picture" onClick={this.selectType}/>
-          <span className="modal-post__radio-text">Gallery:</span>
-          <input className="modal-post__radio" name="post-type" type="radio" value="gallery" onClick={this.selectType}/>
-          <span className="modal-post__radio-text">Quote:</span>
-          <input className="modal-post__radio" name="post-type" type="radio" value="quote" onClick={this.selectType}/>
-          <span className="modal-post__radio-text">Video:</span>
-          <input className="modal-post__radio" name="post-type" type="radio" value="video" onClick={this.selectType}/>
+          <div className="modal-post-radio">
+            <span className="modal-post__radio-text">Default:</span>
+            <input className="modal-post__radio" name="post-type" type="radio" value="default"
+            onClick={this.selectType} />
+          </div>
+
+          <div className="modal-post-radio">
+            <span className="modal-post__radio-text">Default with picture:</span>
+            <input className="modal-post__radio" name="post-type" type="radio" value="picture" onClick={this.selectType}/>
+          </div>
+
+          <div className="modal-post-radio">
+            <span className="modal-post__radio-text">Gallery:</span>
+            <input className="modal-post__radio" name="post-type" type="radio" value="gallery" onClick={this.selectType}/>
+          </div>
+
+          <div className="modal-post-radio">
+            <span className="modal-post__radio-text">Quote:</span>
+            <input className="modal-post__radio" name="post-type" type="radio" value="quote" onClick={this.selectType}/>
+          </div>
+
+          <div className="modal-post-radio">
+            <span className="modal-post__radio-text">Video:</span>
+            <input className="modal-post__radio" name="post-type" type="radio" value="video" onClick={this.selectType}/>
+          </div>
           {form}
           {button}
         </form>

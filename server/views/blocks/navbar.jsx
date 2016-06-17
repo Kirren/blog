@@ -15,6 +15,12 @@ export default class Navbar extends React.Component {
               <h1 className="navbar-title">Your Blog</h1>
             </div>
             <div className="col-8">
+
+              <input id="menu-trigger" className="navbar-menu-trigger" type="checkbox"/>
+              <label htmlFor="menu-trigger">
+                <div className="navbar-menu-button"></div>
+              </label>
+
               <ul className="navbar-menu">
                 <li><a href="/" className={`navbar-menu__button ${homeLink}`}>home</a></li>
                 <li><a href="/about" className={`navbar-menu__button ${aboutLink}`}>about</a></li>
