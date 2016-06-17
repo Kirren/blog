@@ -1,11 +1,14 @@
 import React, { Component } from 'react'
 import { findDOMNode } from 'react-dom'
 
+import InfoModal from 'components/Modals/InfoModal/InfoModal'
+
 export default class ModalEditPost extends Component {
   constructor() {
     super()
     this.handleApply = this.handleApply.bind(this)
     this.handleChange = this.handleChange.bind(this)
+    this.toggleInfo = this.toggleInfo.bind(this)
   }
   componentWillMount() {
     this.setState({
@@ -15,7 +18,13 @@ export default class ModalEditPost extends Component {
       video: this.props.data.video || null,
       quote: this.props.data.quote || null,
       hashtags: this.props.data.hashtags || null,
-      gallery: JSON.parse(this.props.data.gallery) || null
+      gallery: JSON.parse(this.props.data.gallery) || null,
+      toggleInfo: false
+    })
+  }
+  toggleInfo() {
+    this.setState({
+      toggleInfo: !this.state.toggleInfo
     })
   }
   handleApply(ev) {
@@ -66,6 +75,10 @@ export default class ModalEditPost extends Component {
     }
   }
   render() {
+    let galleryInfo = (this.state.toggleInfo) ? (
+      <InfoModal>Ссылки должны быть записаны через запятую. Без пробелов и Enter</InfoModal>
+    ) : null
+
     let video = (this.props.data.video) ? (
     <div>
       <label className="modal-post__label" htmlFor="modal-post__video">Video:</label>
@@ -89,8 +102,11 @@ export default class ModalEditPost extends Component {
 
     let gallery = (this.props.data.gallery) ? (
     <div>
-      <label className="modal-post__label" htmlFor="modal-post__gallery">Gallery links:</label>
-      <textarea onChange={this.handleChange} id="modal-post__gallery" className="modal-post__textarea modal-post__textarea_gallery" value={this.state.gallery}></textarea>
+      <label className="modal-post__label" htmlFor="modal-post__gallery">
+      Gallery links:
+      {galleryInfo}
+      </label>
+      <textarea onFocus={this.toggleInfo} onBlur={this.toggleInfo} onChange={this.handleChange} id="modal-post__gallery" className="modal-post__textarea modal-post__textarea_gallery" value={this.state.gallery}></textarea>
     </div>
     ) : null
 

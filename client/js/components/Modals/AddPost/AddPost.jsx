@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import { findDOMNode } from 'react-dom'
 
+import InfoModal from 'components/Modals/InfoModal/InfoModal'
+
 export default class AddPost extends Component {
   constructor() {
     super()
@@ -12,12 +14,19 @@ export default class AddPost extends Component {
       quote: null,
       hashtags: null,
       picture: null,
-      gallery: null
+      gallery: null,
+      toggleInfo: false
     }
     this.selectType = this.selectType.bind(this)
     this.handlerType = this.handlerType.bind(this)
     this.receiveData = this.receiveData.bind(this)
     this.checkPicture = this.checkPicture.bind(this)
+    this.toggleInfo = this.toggleInfo.bind(this)
+  }
+  toggleInfo() {
+    this.setState({
+      toggleInfo: !this.state.toggleInfo
+    })
   }
   selectType(ev) {
     let target = findDOMNode(ev.target).getAttribute('value')
@@ -86,11 +95,24 @@ export default class AddPost extends Component {
     let form
     let button = (this.state.type) ? <button className="modal-post__button" type="submit" onClick={ this.receiveData }>Apply</button> : null
 
+    let pictureInfo = (this.state.type === 'picture' && this.state.toggleInfo) ? (
+      <InfoModal>Пример: http://example.com/picture.png</InfoModal>
+    ) : null
+
+    let galleryInfo = (this.state.type === 'gallery' && this.state.toggleInfo) ? (
+      <InfoModal>После каждой ссылки должен быть нажат Enter</InfoModal>
+    ) : null
+
+    let videoInfo = (this.state.type === 'video' && this.state.toggleInfo) ? (
+      <InfoModal>Последние буквы в ссылке: <span>https://www.youtube.com/watch?v=</span>kXcOyYEldZY</InfoModal>
+    ) : null
+
     switch (this.state.type) {
       case 'default': form = (
         <div>
           <label className="modal-post__label" htmlFor="modal-post__title">Title:</label>
           <input onChange={this.handlerType} id="modal-post__title" className="modal-post__input modal-post__input_title" type="text"/>
+
           <label className="modal-post__label" htmlFor="modal-post__text">Text:</label>
           <textarea onChange={this.handlerType} id="modal-post__text" className="modal-post__textarea modal-post__textarea_text"></textarea>
           <label className="modal-post__label" htmlFor="modal-post__hashtags">Hashtags:</label>
@@ -100,8 +122,11 @@ export default class AddPost extends Component {
 
       case 'picture': form = (
         <div>
-          <label className="modal-post__label" htmlFor="modal-post__picture">Picture link:</label>
-          <input autoComplete="off" onChange={this.handlerType} id="modal-post__picture" className={`modal-post__input modal-post__input_picture ${this.checkPicture()}`} type="text"/>
+          <label className="modal-post__label" htmlFor="modal-post__picture">
+          Picture link:
+          {pictureInfo}
+          </label>
+          <input onFocus={this.toggleInfo} onBlur={this.toggleInfo} autoComplete="off" onChange={this.handlerType} id="modal-post__picture" className={`modal-post__input modal-post__input_picture ${this.checkPicture()}`} type="text"/>
           <label className="modal-post__label" htmlFor="modal-post__title">Title:</label>
           <input onChange={this.handlerType} id="modal-post__title" className="modal-post__input modal-post__input_title" type="text"/>
           <label className="modal-post__label" htmlFor="modal-post__text">Text:</label>
@@ -113,8 +138,11 @@ export default class AddPost extends Component {
 
       case 'gallery': form = (
         <div>
-          <label className="modal-post__label" htmlFor="modal-post__gallery">Gallery links:</label>
-          <textarea onChange={this.handlerType} id="modal-post__gallery" className="modal-post__textarea modal-post__textarea_gallery"></textarea>
+          <label className="modal-post__label" htmlFor="modal-post__gallery">
+          Gallery links:
+          {galleryInfo}
+          </label>
+          <textarea onFocus={this.toggleInfo} onBlur={this.toggleInfo} onChange={this.handlerType} id="modal-post__gallery" className="modal-post__textarea modal-post__textarea_gallery"></textarea>
           <label className="modal-post__label" htmlFor="modal-post__title">Title:</label>
           <input onChange={this.handlerType} id="modal-post__title" className="modal-post__input modal-post__input_title" type="text"/>
           <label className="modal-post__label" htmlFor="modal-post__text">Text:</label>
@@ -135,8 +163,11 @@ export default class AddPost extends Component {
 
       case 'video': form = (
         <div>
-          <label className="modal-post__label" htmlFor="modal-post__video">Video:</label>
-          <input onChange={this.handlerType} id="modal-post__video" className="modal-post__input modal-post__input_video" type="text"/>
+          <label className="modal-post__label" htmlFor="modal-post__video">
+          Video:
+          {videoInfo}
+          </label>
+          <input onFocus={this.toggleInfo} onBlur={this.toggleInfo} onChange={this.handlerType} id="modal-post__video" className="modal-post__input modal-post__input_video" type="text"/>
           <label className="modal-post__label" htmlFor="modal-post__title">Title:</label>
           <input onChange={this.handlerType} id="modal-post__title" className="modal-post__input modal-post__input_title" type="text"/>
           <label className="modal-post__label" htmlFor="modal-post__hashtags">Hashtags:</label>

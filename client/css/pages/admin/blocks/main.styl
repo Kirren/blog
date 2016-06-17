@@ -106,6 +106,7 @@
 
 .modal-post__input
 .modal-post__textarea
+  position relative
   display block
   width 100%
   border 1px solid lighten($admin-color-secondary, 9%)
@@ -123,7 +124,8 @@
   min-height 50px
 
 .modal-post__label
-  display inline-block
+  position relative
+  display block
   padding 10px 0 5px
   font-size 18px
   color lighten($admin-color-secondary, 25%)
@@ -191,3 +193,27 @@
   opacity: 0.01;
   transition: opacity 100ms ease-in;
 }
+
+.info-modal
+  z-index 999
+  position absolute
+  top 0
+  left 200px
+  padding 5px 15px
+  color #fff
+  font-size 13px
+  background-color $color-primary
+  border-radius 5px
+  &::after
+    content ''
+    position absolute
+    bottom -5px
+    left 10px
+    width 0
+    height 0
+    border-top 5px solid $color-primary
+    border-left 5px solid transparent
+    border-right 5px solid transparent
+
+.info-modal span
+  color lighten($color-primary, 50%)

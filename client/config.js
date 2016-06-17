@@ -3,6 +3,7 @@ const resolve = require('path').resolve
 
 // css dependencies
 const lost = require('lost')
+const rupture = require('rupture')
 const rucksack = require('rucksack-css')
 const autoprefixer = require('autoprefixer')
 
@@ -36,7 +37,8 @@ module.exports.paths = {
 
 module.exports.stylus = {
   'include css': true,
-  import: [ resolve(__dirname, 'css/variables.styl') ]
+  use: [rupture()],
+  import: ['rupture', resolve(__dirname, 'css/variables.styl') ]
 }
 
 module.exports.postcss = [
