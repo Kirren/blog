@@ -24,9 +24,6 @@ gulp.task('css', () =>
     .pipe(plumber())
     .pipe(stylus(config.stylus))
     .pipe(postcss(config.postcss))
-    .pipe(_if(isProduction, cssNano({
-      safe: true
-    })))
     .pipe(plumber.stop())
     .pipe(gulp.dest(config.paths.build.css))
 )

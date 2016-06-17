@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "rimraf public && gulp",
-    "server": "rimraf public && cross-env NODE_ENV=production gulp prod && NODE_ENV=production node index.js"
+    "server": "rimraf public && cross-env NODE_ENV=production gulp prod && cross-env NODE_ENV=production node index.js"
   },
   "repository": {
     "type": "git",
@@ -24,6 +24,7 @@
     "body-parser": "^1.15.1",
     "compression": "^1.6.2",
     "cross-env": "^1.0.8",
+    "es6-promise": "^3.2.1",
     "express": "^4.13.4",
     "express-mysql-session": "^1.0.0",
     "express-react-views": "^0.10.2",

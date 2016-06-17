@@ -64,7 +64,7 @@ const webpackConfig = {
     archive: ['./archive'],
     about: ['./about'],
     contact: ['./contact'],
-    vendor: ['react', 'react-dom', 'axios']
+    vendor: ['react', 'react-dom',  'es6-promise', 'axios']
   },
   output: {
     filename: '[name].js'
