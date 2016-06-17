@@ -295,20 +295,14 @@ a
   float right
   display none
   padding 5px 10px
-  background-color $color-primary
-  color #fff
-  border-radius 5px
-  box-shadow 0 2px 0 darken($color-primary, 50%)
+  background-color #fff
+  color $color-primary
+  box-shadow 0 0 10px rgba(black, .1)
+  font-family 'Open Sans Bold'
   position relative
   z-index 1000
   transition all .5s ease
   user-select none
-  top 25px
-  right 1%
-  display block
-  cursor pointer
-  &::before
-    content 'MENU'
 
 .navbar-menu-trigger
   display none
@@ -321,8 +315,8 @@ a
     background-color transparent
     top 17px
     font-size 18px
-    font-weight bold
     box-shadow none
+    color #fff
     &::before
       content 'X'
 
@@ -345,7 +339,12 @@ a
 
   .navbar-menu-button
     position fixed
+    top 25px
+    right 1%
     display block
+    cursor pointer
+    &::before
+      content 'MENU'
 
   .navbar-menu
     text-align center
