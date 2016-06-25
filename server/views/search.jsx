@@ -17,6 +17,7 @@ export default class Search extends React.Component {
         <body>
           <NavBar searchLink={true} />
           <div id="ROOT"></div>
+          <script src="/js/vendor.js"></script>
           <script src="/js/common.js"></script>
           <script src="/js/search.js"></script>
         </body>

@@ -14,6 +14,7 @@ export default class Admin extends React.Component {
         </head>
         <body>
           <div id="ROOT"></div>
+          <script src="/js/vendor.js"></script>
           <script src="/js/common.js"></script>
           <script src="/js/admin.js"></script>
         </body>

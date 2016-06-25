@@ -1,5 +1,5 @@
+.DS_Store
 node_modules
 public
 trash
-.DS_Store
-*.log
+npm-debug.log

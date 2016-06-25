@@ -57,6 +57,7 @@ const webpackConfig = {
   },
   context: resolve(__dirname, 'js'),
   entry: {
+    common: ['./common'],
     home: ['./home'],
     admin: ['./admin'],
     login: ['./login'],
@@ -64,7 +65,7 @@ const webpackConfig = {
     archive: ['./archive'],
     about: ['./about'],
     contact: ['./contact'],
-    vendor: ['react', 'react-dom',  'es6-promise', 'axios']
+    vendor: ['react', 'react-dom', 'axios']
   },
   output: {
     filename: '[name].js'
@@ -83,7 +84,10 @@ const webpackConfig = {
     ]
   },
   plugins: [
-    new webpack.optimize.CommonsChunkPlugin('vendor' ,'common.js'),
+    new webpack.optimize.CommonsChunkPlugin({
+      name: 'vendor',
+      filename: 'vendor.js'
+    }),
     new webpack.DefinePlugin({
         'process.env': {
           'NODE_ENV': JSON.stringify('production')

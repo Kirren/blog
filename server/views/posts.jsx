@@ -60,6 +60,7 @@ export default class Home extends React.Component {
         <body>
           <Navbar archiveLink={true} />
           <Posts data={this.props}/>
+          <script src="/js/vendor.js"></script>
           <script src="/js/common.js"></script>
           <script src="/js/home.js"></script>
         </body>

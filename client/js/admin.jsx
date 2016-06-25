@@ -1,8 +1,6 @@
 import React, { Component } from 'react'
 import { render } from 'react-dom'
 import { Router, Route, IndexRoute, hashHistory } from 'react-router'
-require('es6-promise').polyfill()
-import loadbar from './lib/loadbar'
 
 // components
 import Sidebar from 'components/Sidebar/Sidebar'
@@ -22,7 +20,6 @@ class Admin extends Component {
   }
 }
 
-loadbar()
 render(
 <Router history={hashHistory}>
   <Route path="/" component={Admin}>

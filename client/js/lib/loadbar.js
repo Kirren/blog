@@ -8,7 +8,7 @@ export default function() {
       let state = document.readyState
       switch (state) {
         case 'interactive': {
-          target.style.width = '50%'
+          target.style.width = '35%'
         }; break;
         case 'complete': {
           target.style.width = '100%'

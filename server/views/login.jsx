@@ -34,6 +34,7 @@ export default class Login extends React.Component {
 
             </form>
           </div>
+          <script src="/js/vendor.js"></script>
           <script src="/js/common.js"></script>
           <script src="/js/login.js"></script>
         </body>

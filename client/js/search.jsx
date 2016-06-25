@@ -1,7 +1,5 @@
 import React, { Component } from 'react'
 import { render } from 'react-dom'
-import loadbar from './lib/loadbar'
-require('es6-promise').polyfill()
 const ROOT = document.querySelector('#ROOT')
 
 // view layers
@@ -17,5 +15,4 @@ class Search extends Component {
   }
 }
 
-loadbar()
 render (<Search />, ROOT)

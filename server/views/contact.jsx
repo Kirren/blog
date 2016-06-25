@@ -33,6 +33,7 @@ export default class Contact extends React.Component {
               </div>
             </div>
           </div>
+          <script src="/js/vendor.js"></script>
           <script src="/js/common.js"></script>
           <script src="/js/contact.js"></script>
         </body>
